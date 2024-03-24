@@ -11,7 +11,7 @@
   --bs-purple: #6f42c1;
   --bs-pink: #d63384;
   --bs-red: #F56565;
-  --bs-orange: #fd7e14;
+  --bs-orange: #ff841f;
   --bs-yellow: #FBD38D;
   --bs-green: #81E6D9;
   --bs-teal: #20c997;
@@ -3460,23 +3460,23 @@ textarea.form-control-lg {
 
 .btn-primary {
   color: #000;
-  background-color: #fb6340;
+  background-color: #00ccff;
   border-color: #fb6340;
 }
 .btn-primary:hover {
   color: #000;
-  background-color: #fc7a5d;
+  background-color: #00ccff;
   border-color: #fb7353;
 }
 .btn-check:focus + .btn-primary, .btn-primary:focus {
   color: #000;
-  background-color: #fc7a5d;
+  background-color: #00ccff;
   border-color: #fb7353;
   box-shadow: 0 0 0 0.2rem rgba(213, 84, 54, 0.5);
 }
 .btn-check:checked + .btn-primary, .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle {
   color: #000;
-  background-color: #fc8266;
+  background-color: #00ccff;
   border-color: #fb7353;
 }
 .btn-check:checked + .btn-primary:focus, .btn-check:active + .btn-primary:focus, .btn-primary:active:focus, .btn-primary.active:focus, .show > .btn-primary.dropdown-toggle:focus {
