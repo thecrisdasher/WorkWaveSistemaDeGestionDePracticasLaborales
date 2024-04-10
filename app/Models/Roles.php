@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Roles extends Model
 {
@@ -19,4 +20,9 @@ class Roles extends Model
     // Declaro los campos que usaré de la tabla 'productos'
     protected $primaryKey = 'id_rol';
     protected $fillable = ['tipo_rol_user'];
+
+    public function Users(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
 }

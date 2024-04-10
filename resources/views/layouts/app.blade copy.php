@@ -23,11 +23,11 @@
 </head>
 
 <body class="{{ $class ?? '' }}">
+    <p>HOLA MUNDO BROS</p>
 
     @guest
         @yield('content')
     @endguest
-
 
     @auth
         @if (in_array(request()->route()->getName(), ['sign-in-static', 'sign-up-static', 'login', 'register', 'recover-password', 'rtl', 'virtual-reality']))
@@ -47,7 +47,6 @@
             @include('components.fixed-plugin')
         @endif
     @endauth
-
 
 
     <!--   Core JS Files   -->

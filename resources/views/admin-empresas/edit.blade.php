@@ -1,4 +1,4 @@
-@extends('pages.Oferta')
+@extends('pages.dashboard')
 
 @section('edit')
     {{ __('Update') }} Oferta
@@ -15,13 +15,13 @@
                     </div>
                     <div class="card-body">
 
-                        <form method="POST" action="{{ route('oferta.update', $oferta->id_oferta) }}" role="form"
+                        <form method="POST" action="{{ route('oferta.update', $admi->id_oferta) }}" role="form"
                             enctype="multipart/form-data">
                             <input type="hidden" name="_method" value="PUT">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 
-                            @include('oferta.form.prt')
+                            @include('admin-empresas.form.prt')
 
                         </form>
                     </div>

@@ -7,11 +7,11 @@
                     <script>
                         document.write(new Date().getFullYear())
                     </script>,
-                    made with <i class="fa fa-heart"></i> by
-                    <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
+                    hecho con <i class="fa fa-heart"></i> by
+                    <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Cristian, Andres and Luis</a>
                     &
-                    <a href="https://www.updivision.com" class="font-weight-bold" target="_blank">UPDIVISION</a>
-                    for a better web.
+                    <a href="https://www.updivision.com" class="font-weight-bold" target="_blank">Una Visión</a>
+                    Para unas practicas mejores.
                 </div>
             </div>
             <div class="col-lg-6">

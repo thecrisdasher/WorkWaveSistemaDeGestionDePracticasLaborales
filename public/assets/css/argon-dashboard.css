@@ -632,12 +632,34 @@ progress {
 .container-lg,
 .container-md,
 .container-sm {
+  width: 395%;
+  padding-right: var(--bs-gutter-x, 1.5rem);
+  padding-left: var(--bs-gutter-x, 1.5rem);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+h1.titulo-centrado {
+    color: #0206c7; /* Cambia el color del texto */
+    font-size: 3rem; /* Cambia el tamaño de la fuente */
+    font-family:  var(--bs-font-monospace); /* Cambia la familia de fuente */
+    position: relative;
+}
+
+.ofertasshowadmin {
   width: 100%;
   padding-right: var(--bs-gutter-x, 1.5rem);
   padding-left: var(--bs-gutter-x, 1.5rem);
   margin-right: auto;
   margin-left: auto;
 }
+.ofertasshowadmins {
+    width: 100%;
+    padding-right: var(--bs-gutter-x, 1.5rem);
+    padding-left: var(--bs-gutter-x, 1.5rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
 
 @media (min-width: 576px) {
   .container-sm, .container {
@@ -5006,6 +5028,17 @@ textarea.form-control-lg {
   border: 0 solid rgba(0, 0, 0, 0.125);
   border-radius: 1rem;
 }
+.card1 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: none rgba(0, 0, 0, 0);
+    border-radius: 1rem;
+  }
 .card > hr {
   margin-right: 0;
   margin-left: 0;
@@ -9340,6 +9373,7 @@ textarea.form-control-lg {
 
 .text-center {
   text-align: center !important;
+  color: black;
 }
 
 .text-decoration-none {
@@ -9454,7 +9488,7 @@ textarea.form-control-lg {
 }
 
 .bg-primary {
-  background-color: #fb6340 !important;
+  background-color: #5E0097;
 }
 
 .bg-secondary {
@@ -23032,7 +23066,7 @@ p, .p {
 }
 
 .text-sm {
-  font-size: 0.875rem !important;
+  font-size: 0.890rem !important;
 }
 
 .text-xs {

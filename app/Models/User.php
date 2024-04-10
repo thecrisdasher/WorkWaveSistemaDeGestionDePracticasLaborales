@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -28,6 +29,7 @@ class User extends Authenticatable
         'city',
         'country',
         'postal',
+        'id_rol',
         'about'
     ];
 
@@ -61,8 +63,12 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
-    public function portulantes(): HasMany
+    public function postulantes(): HasMany
     {
         return $this->hasMany(Postulantes::class);
+    }
+    public function id_rol(): BelongsTo
+    {
+        return $this->belongsTo(Roles::class);
     }
 }

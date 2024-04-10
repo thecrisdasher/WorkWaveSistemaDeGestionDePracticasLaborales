@@ -11,10 +11,6 @@ class Empresas extends Model
 {
     use HasFactory;
 
-    static $rules = [
-		'name' => 'required|string',
-		'email' => 'required|string',
-    ];
     // Instancio la tabla 'productos'
     protected $table = 'empresas';
 

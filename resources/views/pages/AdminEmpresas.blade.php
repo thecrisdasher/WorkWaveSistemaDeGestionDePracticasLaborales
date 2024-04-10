@@ -1,9 +1,44 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
 @section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Dashboard'])
+    @include('layouts.navbars.auth.topnav', ['title' => 'Administra las empresas'])
 
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-xl-3 col-sm-6 mb-xl-4 mb-4">
+                <div class="table-responsive p-0">
+                    <div class="row mt-4 mx-4">
+                        <div class="col-12">
+                            <div class="alert alert-light" role="alert">
+                                Aqui podrás administrar las empresas <strong>Modifica, crea o elimina!</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
 
+<div class="ofertasshowadmins mt-6">
+    <div class="row mt-4">
+        <div class="col-lg-12 mb-lg-0 mb-4">
+            <div class="card ">
+                <div class="card-header pb-0 p-3">
+                    <div class="d-flex justify-content-between">
+                        <h6 class="mb-2">Empresas</h6>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    @yield('adminempresa')
+                    @yield('empresas')
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+
+        </div>
+    </div>
+</div>
     @include('layouts.footers.auth.footer')
 @endsection
 
@@ -94,3 +129,4 @@
         });
     </script>
 @endpush
+

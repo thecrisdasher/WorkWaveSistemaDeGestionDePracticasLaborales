@@ -21,7 +21,7 @@ class Ofertas extends Model
     /**
      * Get the post that owns the comment.
      */
-    public function tipoCargo(): BelongsTo
+    public function id_tipo_cargo(): BelongsTo
     {
         return $this->belongsTo(Tipo_cargos::class);
     }
@@ -30,14 +30,19 @@ class Ofertas extends Model
     /**
      * Get the post that owns the comment.
      */
-    public function tipoContrato(): BelongsTo
+    public function id_tipo_contrato(): BelongsTo
     {
         return $this->belongsTo(Tipo_contratos::class);
     }
 
-    public function empresa(): BelongsTo
+    public function id_empresa(): BelongsTo
     {
         return $this->belongsTo(Empresas::class);
+    }
+
+    public function id_ubicacion(): BelongsTo
+    {
+        return $this->belongsTo(Ubicaciones::class);
     }
 
     public function solicitudes(): HasMany

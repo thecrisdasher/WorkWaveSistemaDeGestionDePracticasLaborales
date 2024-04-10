@@ -9,10 +9,14 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\OfertaController;
+use App\Http\Controllers\AdminEmpresasController;
+
 
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
 Route::resource('/oferta', 'App\Http\Controllers\OfertaController')->middleware('auth');
+Route::resource('/admin-empresas', 'App\Http\Controllers\AdminEmpresasController')->middleware('auth');
+Route::resource('/admin-users', 'App\Http\Controllers\UsersAdminController')->middleware('auth');
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest')->name('register.perform');
 Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
@@ -35,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/sign-up-static', [PageController::class, 'signup'])->name('sign-up-static');
 	Route::get('/{page}', [PageController::class, 'index'])->name('page');
 	Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
 });
 
 

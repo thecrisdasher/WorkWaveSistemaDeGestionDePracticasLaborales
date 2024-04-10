@@ -1,5 +1,6 @@
 
-@extends('pages.dashboard')
+@extends('pages.Oferta')
+
 @section('create')
 
 <form method="POST" action="{{ route('oferta.store') }}" role="form"

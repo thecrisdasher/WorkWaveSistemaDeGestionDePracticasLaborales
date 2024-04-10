@@ -2,36 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ofertas;
+use App\Models\Empresas;
 use Illuminate\Http\Request;
-use App\Models\Oferta;
 use Session;
 use Redirect;
 
-
-class OfertaController extends Controller
+class AdminEmpresasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $oferta = Ofertas::all();
-        return view('oferta.index', compact('oferta'));
+        $admin_empresas = Empresas::all();
+        return view('admin-empresas.admin-empresa', compact('admin_empresas'));
 
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
 
-        return view('oferta.createoferta');
+        return view('admin-empresas.create-empresa');
     }
 
     /**
@@ -43,23 +30,20 @@ class OfertaController extends Controller
     public function store(Request $request)
     {
         // Instancio al modelo Productos que hace llamado a la tabla 'productos'
-        $oferta = new Ofertas;
+        $admin_empresas = new Empresas;
         // Recibo todos los datos del formulario de la vista
-        $oferta->nombre_oferta = $request->nombre_oferta;
-        $oferta->salario = $request->salario;
-        $oferta->descripcion = $request->descripcion;
-        $oferta->id_tipo_cargo = $request->tipoCargo;
-        $oferta->id_tipo_contrato = 1;//practicante siempre
-        $oferta->id_empresa = 1;
-        $oferta->id_ubicacion = 1;
+        $admin_empresas->nombre = $request->nombre;
+        $admin_empresas->razon_social = $request->razon_social;
+        $admin_empresas->id_usuario = 1;
+        $admin_empresas->id_ubicacion = 1;
 
         // Almacenos la imagen en la carpeta publica especifica,
         // Guardamos la fecha de creación del registro
         //$oferta->created_at = (new DateTime)->getTimestamp();
         // Inserto todos los datos en mi tabla 'productos'
-        $oferta->save();
+        $admin_empresas->save();
         // Hago una redirección a la vista principal con un mensaje
-        return redirect('oferta')->with('message', 'Oferta Guardado
+        return redirect('admin-empresas')->with('message', 'Empresa Guardada
         Satisfactoriamente !');
 
     }
@@ -67,12 +51,12 @@ class OfertaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id_oferta
+     * @param  int  $id_empresa
      * @return \Illuminate\Http\Response
      */
-    public function show($id_oferta)
+    public function show($id_empresa)
     {
-        $oferta = Ofertas::all();
+        $admin_empresas = Empresas::all();
 
     }
 
@@ -85,7 +69,7 @@ class OfertaController extends Controller
     public function edit($id_oferta)
     {
         $oferta = Ofertas::find($id_oferta);
-        return view('oferta.edit', compact('oferta-edit'));
+        return view('oferta.edit', compact('oferta'));
     }
 
     /**
@@ -137,4 +121,5 @@ class OfertaController extends Controller
         Session::flash('message', 'Eliminado Satisfactoriamente !');
         return Redirect::to('oferta');
     }
+
 }

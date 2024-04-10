@@ -1,5 +1,7 @@
-<div class="modal fade" id="modal-delete-{{ $ofert->id_oferta }}" tabindex="-1" arialabelledby="ModalLabel" aria-hidden="true">
-    <form method="POST" action="{{ route('oferta.destroy', $ofert->id_oferta) }}" role="form" enctype="multipart/form-data">
+<div class="modal fade" id="modal-delete-{{ $users_admi->id }}" tabindex="-1" arialabelledby="ModalLabel"
+    aria-hidden="true">
+    <form method="POST" action="{{ route('admin-empresas.destroy', $users_admi->id) }}" role="form"
+        enctype="multipart/form-data">
         <input type="hidden" name="_method" value="delete">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="modal-dialog">
