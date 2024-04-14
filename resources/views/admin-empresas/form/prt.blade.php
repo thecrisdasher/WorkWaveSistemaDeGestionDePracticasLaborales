@@ -2,19 +2,19 @@
     <div class="col-md-12">
         <section class="panel">
             <div class="panel-body">
-                @if (!empty($empresas->id_empresa))
+                @if (!empty($admin_empresa->id_empresa))
                     <div class="mb-3">
                         <label for="nombre" class="negrita">Nombre:</label>
                         <div>
                             <input class="form-control" placeholder=" " required="required" name="nombre"
-                                type="text" id="nombre" value="{{ $empresa->nombre }}">
+                                type="text" id="nombre" value="{{ $admin_empresa->nombre }}">
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="razon_social" class="negrita">Razon Social:</label>
                         <div>
                             <input class="form-control" placeholder="" required="required" name="razon_social"
-                                type="text" id="razon_social" value="{{ $empresa->razon_social }}">
+                                type="text" id="razon_social" value="{{ $admin_empresa->razon_social }}">
                         </div>
                     </div>
                 @else

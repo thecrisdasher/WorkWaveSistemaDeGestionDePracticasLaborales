@@ -32,6 +32,7 @@
                     @yield('create')
                     @yield('edit')
                     @yield('editacion')
+                    @yield('usuarios')
                 </div>
             </div>
         </div>

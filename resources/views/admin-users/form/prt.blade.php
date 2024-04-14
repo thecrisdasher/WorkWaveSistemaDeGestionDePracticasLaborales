@@ -7,14 +7,14 @@
                         <label for="nombre" class="negrita">Nombre:</label>
                         <div>
                             <input class="form-control" placeholder=" " required="required" name="nombre"
-                                type="text" id="nombre" value="{{ $users_admin->nombre }}">
+                                type="text" id="nombre" value="{{ $users_admin->username }}">
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="razon_social" class="negrita">Razon Social:</label>
                         <div>
                             <input class="form-control" placeholder="" required="required" name="razon_social"
-                                type="text" id="razon_social" value="{{ $empresa->razon_social }}">
+                                type="text" id="razon_social" value="{{ $users_admin->razon_social }}">
                         </div>
                     </div>
                 @else

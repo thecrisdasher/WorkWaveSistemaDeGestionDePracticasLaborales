@@ -23,7 +23,7 @@
                                                 <form action="" method="POST" class="form-horizontal" role="form">
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <a href="" class="btn btndark">Detalles</a>
-                                                    <a href="" class="btn btnprimary">Editar</a>
+                                                    <a href="{{ route('admin-empresas.edit', $admin_empresa->id_empresa) }}" class="btn btnprimary">Editar</a>
                                                     <a href=""
                                                         data-bs-toggle="modal"data-bs-target="#modal-delete-{{ $admin_empresa->id_empresa }}">
                                                         <button type="button" class="btn btn-danger"> Eliminar</button>

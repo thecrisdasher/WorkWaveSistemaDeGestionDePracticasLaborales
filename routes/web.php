@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AuthRolAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
@@ -14,9 +15,9 @@ use App\Http\Controllers\AdminEmpresasController;
 
 
 Route::get('/', function () {return redirect('/dashboard');})->middleware('auth');
-Route::resource('/oferta', 'App\Http\Controllers\OfertaController')->middleware('auth');
-Route::resource('/admin-empresas', 'App\Http\Controllers\AdminEmpresasController')->middleware('auth');
-Route::resource('/admin-users', 'App\Http\Controllers\UsersAdminController')->middleware('auth');
+Route::resource('/oferta', 'App\Http\Controllers\OfertaController')->middleware(['auth']);
+Route::resource('/admin-empresas', 'App\Http\Controllers\AdminEmpresasController')->middleware(['auth', AuthRolAdmin::class]);
+Route::resource('/admin-users', 'App\Http\Controllers\UsersAdminController')->middleware(['auth', AuthRolAdmin::class]);
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest')->name('register.perform');
 Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');

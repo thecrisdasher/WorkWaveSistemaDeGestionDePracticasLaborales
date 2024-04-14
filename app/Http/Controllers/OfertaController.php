@@ -85,7 +85,7 @@ class OfertaController extends Controller
     public function edit($id_oferta)
     {
         $oferta = Ofertas::find($id_oferta);
-        return view('oferta.edit', compact('oferta-edit'));
+        return view('oferta.edit', compact('oferta'));
     }
 
     /**
@@ -97,6 +97,7 @@ class OfertaController extends Controller
      */
     public function update(Request $request, $id_oferta)
     {
+
         $oferta = Ofertas::find($id_oferta);
         $oferta->nombre_oferta = $request->nombre_oferta;
         $oferta->salario = $request->salario;

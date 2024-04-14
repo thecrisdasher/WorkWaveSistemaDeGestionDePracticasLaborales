@@ -56,8 +56,8 @@ class User extends Authenticatable
      * Always encrypt the password when it is updated.
      *
      * @param $value
-    * @return string
-    */
+     * @return string
+     */
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
@@ -67,8 +67,45 @@ class User extends Authenticatable
     {
         return $this->hasMany(Postulantes::class);
     }
-    public function id_rol(): BelongsTo
+    public function roles()
     {
-        return $this->belongsTo(Roles::class);
+        return $this
+            ->belongsTo(Roles::class);
+    }
+
+
+    public function authorizeRoles($roles, $abort = false)
+    {
+        if ($this->hasAnyRole($roles)) {
+            return true;
+        }
+        if ($abort) {
+            abort(401, 'Esta acción no está autorizada.');
+        } else {
+            return false;
+        }
+
+    }
+    public function hasAnyRole($roles)
+    {
+        if (is_array($roles)) {
+            foreach ($roles as $role) {
+                if ($this->hasRole($role)) {
+                    return true;
+                }
+            }
+        } else {
+            if ($this->hasRole($roles)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public function hasRole($role)
+    {
+        if ($this->id_rol == $role) {
+            return true;
+        }
+        return false;
     }
 }

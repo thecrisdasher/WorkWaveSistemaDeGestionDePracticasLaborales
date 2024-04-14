@@ -31,6 +31,8 @@
                 <div class="table-responsive">
                     @yield('adminempresa')
                     @yield('empresas')
+                    @yield('editacion')
+                    @yield('edit')
                 </div>
             </div>
         </div>

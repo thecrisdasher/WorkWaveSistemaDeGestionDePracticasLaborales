@@ -56,20 +56,20 @@ class AdminEmpresasController extends Controller
      */
     public function show($id_empresa)
     {
-        $admin_empresas = Empresas::all();
+        $id_empresa = Empresas::all();
 
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id_oferta
+     * @param  int  $id_empresa
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_oferta)
+    public function edit($id_empresa)
     {
-        $oferta = Ofertas::find($id_oferta);
-        return view('oferta.edit', compact('oferta'));
+        $admin_empresas = Empresas::find($id_empresa);
+        return view('admin-empresas.edit', compact('admin_empresas'));
     }
 
     /**
@@ -79,23 +79,19 @@ class AdminEmpresasController extends Controller
      * @param  int  $id_oferta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_oferta)
+    public function update(Request $request, $admin_empresas)
     {
-        $oferta = Ofertas::find($id_oferta);
-        $oferta->nombre_oferta = $request->nombre_oferta;
-        $oferta->salario = $request->salario;
-        $oferta->descripcion = $request->descripcion;
-        $oferta->id_tipo_cargo = $request->tipoCargo;
-        $oferta->id_tipo_contrato = 1;//practicante siempre
-        $oferta->id_empresa = 1;
-        $oferta->id_ubicacion = 1;
-
+        $oferta = Empresas::find($admin_empresas);
+        $admin_empresas->nombre = $request->nombre;
+        $admin_empresas->razon_social = $request->razon_social;
+        $admin_empresas->id_usuario = 1;
+        $admin_empresas->id_ubicacion = 1;
 
         // Actualizo los datos en la tabla 'productos'
         $oferta->save();
         // Muestro un mensaje y redirecciono a la vista principal
         Session::flash('message', 'Editado Satisfactoriamente !');
-        return Redirect::to('oferta');
+        return Redirect::to('admin-empresas');
 
     }
 

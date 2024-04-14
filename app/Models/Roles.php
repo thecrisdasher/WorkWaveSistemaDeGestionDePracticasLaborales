@@ -11,18 +11,18 @@ class Roles extends Model
     use HasFactory;
 
     static $rules = [
-		'name' => 'required|string',
-		'email' => 'required|string',
+        'tipo_rol_usuario' => 'required|string',
     ];
     // Instancio la tabla 'productos'
     protected $table = 'roles';
 
     // Declaro los campos que usaré de la tabla 'productos'
     protected $primaryKey = 'id_rol';
-    protected $fillable = ['tipo_rol_user'];
+    protected $fillable = ['tipo_rol_usuario'];
 
-    public function Users(): HasMany
+    public function users()
     {
-        return $this->hasMany(User::class);
+        return $this
+            ->belongsTo(User::class);
     }
 }
