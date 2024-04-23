@@ -137,5 +137,8 @@ class OfertaController extends Controller
         // Muestro un mensaje y redirecciono a la vista principal
         Session::flash('message', 'Eliminado Satisfactoriamente !');
         return Redirect::to('oferta');
+
+
     }
+
 }

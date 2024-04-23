@@ -58,20 +58,44 @@ class UsersAdminController extends Controller
     public function update(Request $request, $id)
     {
         $users_admin = User::find($id);
-        $users_admin->nombre_usuario = $request->nombre_usuario;
-        $users_admin->nombre = $request->nombre;
-        $users_admin->apellido = $request-> apellido;
+        $users_admin->username = $request->username;
+        $users_admin->firstname = $request->firstname;
+        $users_admin->lastname = $request-> lastname;
         $users_admin->email = $request-> email;
-        $users_admin->ciudad = $request->ciudad;
+        $users_admin->city = $request->city;
         $users_admin->postal = 1;
-        $users_admin->Sobre = 1;
+        $users_admin->about = $request->about;
 
 
         // Actualizo los datos en la tabla 'productos'
         $users_admin->save();
         // Muestro un mensaje y redirecciono a la vista principal
         Session::flash('message', 'Editado Satisfactoriamente !');
-        return Redirect::to('user');
+        return Redirect::to('admin-users');
 
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        // Indicamos el 'id' del registro que se va Eliminar
+        $users_admin = User::find($id);
+        // Elimino la imagen de la carpeta 'uploads'
+
+
+        // Elimino el registro de la tabla 'productos'
+        User::destroy($id);
+        // Opcional: Si deseas guardar la fecha de eliminación de un registro, debes
+// $productos->deleted_at = (new DateTime)->getTimestamp();
+
+        // Muestro un mensaje y redirecciono a la vista principal
+        Session::flash('message', 'Eliminado Satisfactoriamente !');
+        return Redirect::to('admin-users');
+    }
+
 }

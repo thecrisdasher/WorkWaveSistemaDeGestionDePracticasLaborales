@@ -3,7 +3,7 @@
 @section('content')
     @include('layouts.navbars.auth.topnav', ['title' => 'Ofertas'])
 
-    <div class="container-fluid py-4">
+    <div class="container-fluid py-2">
         <div class="row">
             <div class="col-xl-3 col-sm-6 mb-xl-4 mb-4">
                 <div class="card1" style="background-color: rgba(0, 0, 0, 0) !important; border: none !important;">

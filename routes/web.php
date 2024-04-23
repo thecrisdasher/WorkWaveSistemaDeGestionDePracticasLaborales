@@ -27,6 +27,9 @@ Route::post('/reset-password', [ResetPassword::class, 'send'])->middleware('gues
 Route::get('/change-password', [ChangePassword::class, 'show'])->middleware('guest')->name('change-password');
 Route::post('/change-password', [ChangePassword::class, 'update'])->middleware('guest')->name('change.perform');
 Route::get('/dashboard', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('imprimirUsers','App\http\Controllers\PdfController@imprimirUsers')->name('imprimirUsers');
+Route::get('imprimirOfertas','App\http\Controllers\PdfController@imprimirOfertas')->name('imprimirOfertas');
+Route::get('imprimirEmpresas','App\http\Controllers\PdfController@imprimirEmpresas')->name('imprimirEmpresas');
 
 
 //middleware

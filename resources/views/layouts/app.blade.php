@@ -20,6 +20,8 @@
     <!-- CSS Files -->
     {{-- <link id="pagestyle" href="{{asset('css/argon-dashboard.css')}}" rel="stylesheet" /> --}}
     <link id="pagestyle" href="http://127.0.0.1:8000/assets/css/argon-dashboard.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{public_path('dist/css/adminlte.min.css')}}">
+
 </head>
 
 <body class="{{ $class ?? '' }}">

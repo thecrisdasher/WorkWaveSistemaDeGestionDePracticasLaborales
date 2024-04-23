@@ -28,7 +28,7 @@
                         <label for="stock" class="negrita">Cargo:</label>
                         <div>
                             <input class="form-control" placeholder="40" required="required" name="descripcion"
-                                type="text" id="stock" value="{{ $oferta->descripcion }}">
+                                type="text" id="stock" value="{{ $oferta->cargo }}">
                         </div>
                     </div>
                 @else

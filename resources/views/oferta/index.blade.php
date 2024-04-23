@@ -2,8 +2,10 @@
 @section('ofertas')
 <div class="row mt-0 mx-4">
     <div class="table-responsive p-0">
-
+        <a href="{{url('imprimirOfertas')}}" target="_blank" class="pull-right">
+            <button class="btn btn-success mt-4 ml-3 mb-4">Imprimir Pdf</button> </a>
         <a href="{{ route('oferta.create') }}" class="btn btn-success mt-4 ml-3 mb-4">Agregar </a>
+
         <table class="table align-items-center mb-0">
             <thead>
                 <tr>
@@ -11,8 +13,9 @@
                     <th>fecha</th>
                     <th>salario</th>
                     <th>descripcion</th>
+                    <th>Empresa</th>
                     <th>Acciones</th>
-                </tr>
+               </tr>
             </thead>
             <tbody>
                 @foreach ($oferta as $ofert)
@@ -21,6 +24,7 @@
                         <td class="v-align-middle">{{ $ofert->created_at }}</td>
                         <td class="v-align-middle">{{ $ofert->salario }}</td>
                         <td class="v-align-middle">{{ $ofert->descripcion }}</td>
+                        <td class="v-align-middle">{{ $ofert->Empresa->nombre}}</td>
                         <td class="v-align-middle">
                             <form action="" method="POST" class="form-horizontal" role="form">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">

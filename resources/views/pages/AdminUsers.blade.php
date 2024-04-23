@@ -3,7 +3,7 @@
 @section('content')
     @include('layouts.navbars.auth.topnav', ['title' => 'Administra los Usuarios'])
 
-    <div class="container-fluid py-4">
+<div class="container-fluid py-4">
         <div class="row">
             <div class="col-xl-3 col-sm-6 mb-xl-4 mb-4">
                 <div class="table-responsive p-0">
@@ -18,8 +18,9 @@
             </div>
         </div>
 </div>
-<div class="ofertasshowadmin mt-6">
-    <div class="row mt-4">
+<div class="container-fluid col-12 py-0">
+<div class="ofertasshowadmin py-2 mt-6">
+    <div class="row col-12 mt-4">
         <div class="col-lg-12 mb-lg-0 mb-4">
             <div class="card ">
                 <div class="card-header pb-0 p-3">
@@ -27,17 +28,15 @@
                         <h6 class="mb-2">Usuarios</h6>
                     </div>
                 </div>
-                <div class="table-responsive">
+                <div class="table-responsive col-12">
                     @yield('adminuser')
                     @yield('create')
                     @yield('edit')
                     @yield('editacion')
                     @yield('usuarios')
                 </div>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-5">
-
         </div>
     </div>
 </div>

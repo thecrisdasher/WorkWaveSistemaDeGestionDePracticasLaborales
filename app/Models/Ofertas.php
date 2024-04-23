@@ -35,9 +35,9 @@ class Ofertas extends Model
         return $this->belongsTo(Tipo_contratos::class);
     }
 
-    public function id_empresa(): BelongsTo
+    public function empresa(): BelongsTo
     {
-        return $this->belongsTo(Empresas::class);
+        return $this->belongsTo(Empresas::class,'id_empresa','id_empresa');
     }
 
     public function id_ubicacion(): BelongsTo

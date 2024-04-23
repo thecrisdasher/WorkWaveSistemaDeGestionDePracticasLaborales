@@ -76,19 +76,19 @@ class AdminEmpresasController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id_oferta
+     * @param  int  $id_empresa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $admin_empresas)
+    public function update(Request $request, $id_empresa)
     {
-        $oferta = Empresas::find($admin_empresas);
+        $admin_empresas = Empresas::find($id_empresa);
         $admin_empresas->nombre = $request->nombre;
         $admin_empresas->razon_social = $request->razon_social;
         $admin_empresas->id_usuario = 1;
         $admin_empresas->id_ubicacion = 1;
 
         // Actualizo los datos en la tabla 'productos'
-        $oferta->save();
+        $admin_empresas->save();
         // Muestro un mensaje y redirecciono a la vista principal
         Session::flash('message', 'Editado Satisfactoriamente !');
         return Redirect::to('admin-empresas');
@@ -98,24 +98,24 @@ class AdminEmpresasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id_oferta
+     * @param  int  $id_empresa
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_oferta)
+    public function destroy($id_empresa)
     {
         // Indicamos el 'id' del registro que se va Eliminar
-        $oferta = Ofertas::find($id_oferta);
+        $admin_empresas = Empresas::find($id_empresa);
         // Elimino la imagen de la carpeta 'uploads'
 
 
         // Elimino el registro de la tabla 'productos'
-        Ofertas::destroy($id_oferta);
+        Empresas::destroy($id_empresa);
         // Opcional: Si deseas guardar la fecha de eliminación de un registro, debes
 // $productos->deleted_at = (new DateTime)->getTimestamp();
 
         // Muestro un mensaje y redirecciono a la vista principal
         Session::flash('message', 'Eliminado Satisfactoriamente !');
-        return Redirect::to('oferta');
+        return Redirect::to('admin-empresas');
     }
 
 }

@@ -3,7 +3,7 @@
 @section('content')
     @include('layouts.navbars.auth.topnav', ['title' => 'Administra las empresas'])
 
-    <div class="container-fluid py-4">
+<div class="container-fluid py-4">
         <div class="row">
             <div class="col-xl-3 col-sm-6 mb-xl-4 mb-4">
                 <div class="table-responsive p-0">
@@ -19,6 +19,7 @@
         </div>
 </div>
 
+<div class="container-fluid col-12 py-0">
 <div class="ofertasshowadmins mt-6">
     <div class="row mt-4">
         <div class="col-lg-12 mb-lg-0 mb-4">
@@ -36,10 +37,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-5">
-
-        </div>
     </div>
+</div>
+</div>
 </div>
     @include('layouts.footers.auth.footer')
 @endsection
