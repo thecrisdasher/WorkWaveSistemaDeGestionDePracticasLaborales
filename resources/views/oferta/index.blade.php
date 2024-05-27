@@ -12,7 +12,7 @@
                     <th>nombre</th>
                     <th>fecha</th>
                     <th>salario</th>
-                    <th>descripcion</th>
+                    <th>Ubicacion</th>
                     <th>Empresa</th>
                     <th>Acciones</th>
                </tr>
@@ -20,13 +20,13 @@
             <tbody>
                 @foreach ($oferta as $ofert)
                     <tr>
-                        <td class="v-align-middle">{{ $ofert->nombre_oferta }}</td>
-                        <td class="v-align-middle">{{ $ofert->created_at }}</td>
+                        <td class="v-align-middle text-wrap">{{ $ofert->nombre_oferta }}</td>
+                        <td class="v-align-middle">{{ $ofert->created_at->format('d/m/Y') }}</td>
                         <td class="v-align-middle">{{ $ofert->salario }}</td>
-                        <td class="v-align-middle">{{ $ofert->descripcion }}</td>
+                        <td class="v-align-middle">{{ $ofert->Ubicacion->direccion }}</td>
                         <td class="v-align-middle">{{ $ofert->Empresa->nombre}}</td>
                         <td class="v-align-middle">
-                            <form action="" method="POST" class="form-horizontal" role="form">
+                            <form action="" method="POST" class="d-flex flex-column" role="form">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <a href="{{ route('oferta.show', $ofert->id_oferta) }}" class="btn btndark">Detalles</a>
                                 <a href="{{ route('oferta.edit', $ofert->id_oferta) }}" class="btn btnprimary">Editar</a>
@@ -39,6 +39,14 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="container-busqueda mt-3 mx-5 d-flex justify-content">
+            <div>
+
+            </div>
+            <div>
+                {!! $oferta->links() !!}
+            </div>
+        </div>
     </div>
 </div>
 @endsection

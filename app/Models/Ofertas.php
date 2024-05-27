@@ -16,7 +16,7 @@ class Ofertas extends Model
 
     // Declaro los campos que usaré de la tabla 'productos'
     protected $primaryKey = 'id_oferta';
-    protected $fillable = ['nombre_oferta', 'descripcion', 'salario','id_empresa'];
+    protected $fillable = ['nombre_oferta', 'descripcion', 'salario','id_empresa','id_ubicacion'];
 
     /**
      * Get the post that owns the comment.
@@ -40,9 +40,9 @@ class Ofertas extends Model
         return $this->belongsTo(Empresas::class,'id_empresa','id_empresa');
     }
 
-    public function id_ubicacion(): BelongsTo
+    public function ubicacion(): BelongsTo
     {
-        return $this->belongsTo(Ubicaciones::class);
+        return $this->belongsTo(Ubicaciones::class,'id_ubicacion','id_ubicacion');
     }
 
     public function solicitudes(): HasMany

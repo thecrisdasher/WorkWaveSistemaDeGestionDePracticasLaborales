@@ -1,57 +1,52 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
-@section('content')
-    @include('layouts.navbars.auth.topnav', ['title' => 'Ofertas'])
 
-    <div class="container-fluid py-2">
-        <div class="row">
-            <div class="col-xl-3 col-sm-6 mb-xl-4 mb-4">
+@section('content')
+<meta name="csrf-token" content="{{csrf_token() }}">
+    @include('layouts.navbars.auth.topnav', ['title' => 'Principal'])
+    <div class="row mt-2 mx-8">
+        <div class="">
                 <div class="card1" style="background-color: rgba(0, 0, 0, 0) !important; border: none !important;">
-                    <div class="card-body d-flex align-items-center justify-content-center p-3">
+                    <div class="card-body d-flex align-items-center justify-content-center p-2">
                         <div class="row">
-                            <div class="col-8 text-center">
+                            <div class="col-12 text-center">
                                 <div class="numbers">
-                                    <h1 class="mt-3 text-white font-weight-bolder">Ultimas Ofertas Creadas</h1>
+                                    <h3 class="mt-0 text-white font-weight-bolder">¡Es hora de cambiar tu futuro!</h3>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-</div>
+            <!--form-control es el buscador-->
+        <div class="input-group rounded-circle" style="position:relative">
+             <span class="input-group-text text-body ">
+            </span>
 
-    <div class="ofertasshowadmin mt-6">
-        <div class="row mt-4">
-            <div class="col-lg-12 mb-lg-0 mb-4">
-                <div class="card ">
-                    <div class="card-header pb-0 p-3">
-                        <div class="d-flex justify-content-between">
-                            <h6 class="mb-2">Ofertas</h6>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        @yield('ofertas')
-                        @yield('create')
-                        @yield('editacion')
-                        @yield('edit')
-                        @yield('show')
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5">
+            <input type="text" class="form-control buscador" placeholder="Busca tus practicas ideales aquí..." >
+            <span class="input-group-text text-body "><a href="{{ url('busqueda')}}" type="button" class="btn btn-success mx-0 mt-3" >Buscar Practicas</a>
+            </span>
+
+            {{-- <div class="input-group rounded-circle" style="position: absolute;    top: 100%;
+            background: white;
+            width: 100%;">
+                <h1>ANUEL</h1> --}}
 
             </div>
+            <ul id="showlist" tabindex="1" class="list-group" style="position: absolute top: 100%"></ul>
         </div>
     </div>
+
+
     @include('layouts.footers.auth.footer')
 @endsection
 
 
 @push('js')
     <script src="./assets/js/plugins/chartjs.min.js"></script>
+    <script src="./assets/js/search.js" type="module"></script>
     <script>
-        var ctx1 = document.getElementById("chart-line").getContext("2d");
+        var ctx1 = document.getElementById("chart-line").getContext("id");
 
         var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
 

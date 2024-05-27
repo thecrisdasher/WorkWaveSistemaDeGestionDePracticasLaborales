@@ -2630,6 +2630,47 @@ h1.titulo-centrado {
   font-size: 0.875em;
   color: #6c757d;
 }
+.buscador {
+    position: relative;
+}
+
+.buscador input {
+    height: 50px;
+    text-indent: 25px;
+    border-radius: 10px;
+     width: 90%;
+}
+.carta-seleccionada {
+    background-color: #f0f0f0; /* Cambia el color de fondo según tu preferencia */
+    border: 2px solid #333; /* Agrega un borde para resaltar */
+}
+
+.buscador input:focus {
+    box-shadow: none;
+    border: 2px solid #98FB98;
+    box-shadow: 0 0 10px #008080;
+}
+
+.buscador .fa-search {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
+.icon{
+    color: #008080;
+}
+
+/*style list products*/
+.list-group-item{
+    width:622px;border:1px solid #f1f1f1;
+}
+.flex-row{
+    border:1px solid #ccd2db;margin-right:-17px;margin-top:-10px;margin-left:-19px;margin-bottom:-10px;
+}
+.divimg{
+    border:1px solid #ccd2db;
+}
 
 .form-control {
   display: block;
@@ -2645,7 +2686,7 @@ h1.titulo-centrado {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  border-radius: 0.5rem;
+  border-radius: 0.9rem;
   transition: box-shadow 0.15s ease, border-color 0.15s ease;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -3224,7 +3265,7 @@ textarea.form-control-lg {
   white-space: nowrap;
   background-color: #fff;
   border: 1px solid #d2d6da;
-  border-radius: 0.5rem;
+  border-radius: 0.8rem;
 }
 
 .input-group-lg > .form-control,
@@ -3233,7 +3274,7 @@ textarea.form-control-lg {
 .input-group-lg > .btn {
   padding: 0.75rem 0.75rem;
   font-size: 0.875rem;
-  border-radius: 0.5rem;
+  border-radius: 0.8rem;
 }
 
 .input-group-sm > .form-control,
@@ -3242,7 +3283,7 @@ textarea.form-control-lg {
 .input-group-sm > .btn {
   padding: 0.25rem 0.75rem;
   font-size: 0.75rem;
-  border-radius: 0.5rem;
+  border-radius: 0.8rem;
 }
 
 .input-group-lg > .form-select,
@@ -20203,7 +20244,7 @@ textarea.form-control-lg {
 }
 
 .input-group {
-  border-radius: 0.5rem;
+  border-radius: 0rem;
 }
 .input-group,
 .input-group .input-group-text {
@@ -20259,6 +20300,7 @@ textarea.form-control-lg {
 .form-check:not(.form-switch) .form-check-input[type=checkbox]:checked, .form-check:not(.form-switch) .form-check-input[type=radio]:checked {
   border: 0;
 }
+
 .form-check:not(.form-switch) .form-check-input[type=checkbox]:after {
   transition: opacity 0.25s ease-in-out;
   font-family: "FontAwesome";

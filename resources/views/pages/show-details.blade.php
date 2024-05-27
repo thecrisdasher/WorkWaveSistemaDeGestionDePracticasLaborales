@@ -1,51 +1,63 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
-
 @section('content')
     @include('layouts.navbars.auth.topnav', ['title' => 'Ofertas'])
+    <div class="container-fluid col-12 py-0">
+        <div class="ofertasshowadmins mt-1">
+            <div class="row mt-1">
+                <div class="col-lg-12 mb-lg-0 mb-4">
+                    <div class="card">
+                        <div class="container col-md-auto pb-12 ">
+                            <header>
 
-    <div class="container-fluid py-2">
-        <div class="row">
-            <div class="col-xl-3 col-sm-6 mb-xl-4 mb-4">
-                <div class="card1" style="background-color: rgba(0, 0, 0, 0) !important; border: none !important;">
-                    <div class="card-body d-flex align-items-center justify-content-center p-3">
-                        <div class="row">
-                            <div class="col-8 text-center">
-                                <div class="numbers">
-                                    <h1 class="mt-3 text-white font-weight-bolder">Ultimas Ofertas Creadas</h1>
-                                </div>
-                            </div>
+                                <h3 class="mt-4">{{ $oferta->nombre_oferta }}</h3>
+                                <p class="col-7 text-justify">{{ $oferta->descripcion}}</p>
+                            </header>
+
+                            <p><strong>Salario:</strong>{{ $oferta->salario}}</p>
+                            <p><strong>Ubicacion:</strong>{{ $oferta->Ubicacion->direccion}}</p>
+
+
+
+
+
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-</div>
-
-    <div class="ofertasshowadmin mt-6">
-        <div class="row mt-4">
-            <div class="col-lg-12 mb-lg-0 mb-4">
-                <div class="card ">
-                    <div class="card-header pb-0 p-3">
-                        <div class="d-flex justify-content-between">
-                            <h6 class="mb-2">Ofertas</h6>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        @yield('ofertas')
-                        @yield('create')
-                        @yield('editacion')
-                        @yield('edit')
-                        @yield('show')
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5">
-
             </div>
         </div>
     </div>
-    @include('layouts.footers.auth.footer')
 @endsection
+@push('js')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const botonPostularme = document.getElementById('postularme');
+
+            botonPostularme.addEventListener('click', function() {
+                const ofertaId = {{ $oferta->id_oferta }}; // Obtener el ID de la oferta desde la vista
+
+                // Realizar la solicitud AJAX para postularse
+                fetch(`/oferta/postularme/${ofertaId}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Mostrar mensaje de éxito
+                    alert(data.message);
+                    // Cambiar el texto del botón a "Te has postulado con éxito"
+                    botonPostularme.textContent = 'Te has postulado con éxito';
+                    botonPostularme.disabled = true; // Opcional: deshabilitar el botón después de postularse
+                })
+                .catch(error => {
+                    console.error('Error al postularse:', error);
+                });
+            });
+        });
+    </script>
+@endpush
+
 
 
 @push('js')

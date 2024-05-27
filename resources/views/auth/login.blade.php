@@ -56,10 +56,9 @@
                         </div>
                         <div
                             class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
-                            <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden"
-                                style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx8S_IGZ5Hc42aZGkyuTnYPXsYRUCz0PQvCQ&usqp=CAU');
-              background-size: cover;">
-                                <span class="mask bg-gradient-primary opacity-6"></span>
+                            <div class="position-relative bg-transparent h-100 ml-0 mt-10 m-4 px-1 border-radius-lg d-flex flex-column justify-content-center overflow-hidden background-size: cover;">
+                                <img src="{{ asset('/img/illustrations/AJC-WW-W_page-0001.jpg') }}" alt="Background Image" class="">
+                                <span class=""></span>
                                 <h4 class="mt-5 text-white font-weight-bolder position-relative">"Tus practicas laborales en un par de clicks."</h4>
                                 <p class="text-white position-relative">¿Cuantas veces no has caido en la desesperación porque no te llaman de ninguna empresa?, pues eso termino con WorkWave, un sistema que te permitirá encontrar practicas laborales rápidamente.</p>
                             </div>

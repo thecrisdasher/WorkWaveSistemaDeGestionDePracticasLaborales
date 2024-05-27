@@ -25,18 +25,25 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="stock" class="negrita">Cargo:</label>
+                        <label for="tipoCargo" class="negrita">Cargo:</label>
                         <div>
-                            <input class="form-control" placeholder="40" required="required" name="descripcion"
-                                type="text" id="stock" value="{{ $oferta->cargo }}">
+                            <select class="form-control" name="tipoCargo" id="tipoCargo" required="required">
+                                @foreach ($tiposCargos as $tiposCargo)
+                                    <option value="{{ $tiposCargo->id_cargo }}"
+                                        {{ old('tipo_Cargo', auth()->user()->id_rol) == $tiposCargo->id ? 'selected' : '' }}>
+                                        {{ $tiposCargo->cargo }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
+
                 @else
                     <div class="mb-3">
                         <label for="nombre" class="negrita">Nombre:</label>
                         <div>
-                            <input class="form-control" placeholder="Portatil Lenovo"
-                                required="required" name="nombre_oferta" type="text" id="nombre">
+                            <input class="form-control" placeholder="Portatil Lenovo" required="required"
+                                name="nombre_oferta" type="text" id="nombre">
                         </div>
                     </div>
                     <div class="mb-3">
@@ -54,18 +61,25 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="stock" class="negrita">Cargo:</label>
+                        <label for="tipoCargo" class="negrita">Cargo:</label>
                         <div>
-                            <input class="form-control" placeholder="40" required="required" name="tipoCargo"
-                                type="text" id="tipoCargo">
+                            <select class="form-control" name="tipoCargo" id="tipoCargo" required="required">
+                                @foreach ($tiposCargos as $tiposCargo)
+                                    <option value="{{ $tiposCargo->id_cargo }}"
+                                        {{ old('tipo_Cargo', auth()->user()->id_rol) == $tiposCargo->id ? 'selected' : '' }}>
+                                        {{ $tiposCargo->cargo }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
-                    @endif
-                    <button type="submit" class="btn btn-info">Guardar</button>
-                    <a href="" class="btn btn-warning">Cancelar</a>
-                    <br>
-                    <br>
+
+                @endif
+                <button type="submit" class="btn btn-info">Guardar</button>
+                <a href="" class="btn btn-warning">Cancelar</a>
+                <br>
+                <br>
             </div>
         </section>
     </div>

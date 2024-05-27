@@ -41,7 +41,7 @@
                         </ul>
                         <ul class="navbar-nav d-lg-block d-none">
                             <li class="nav-item">
-                                <a href="https://www.creative-tim.com/product/argon-dashboard-laravel" target="_blank"
+                                <a href="{{url('QuienesSomos')}}'"
                                     class="btn btn-sm mb-0 me-1 btn-primary">¿Quienes somos?</a>
                             </li>
                         </ul>

@@ -14,12 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            // $table->unsignedBigInteger('id_rol')->default(1);
-            // $table->foreign('id_rol')->references('id_rol')->on('roles');
+            $table->string('photo')->nullable()->after('email');
         });
     }
-
-
 
     /**
      * Reverse the migrations.
@@ -28,6 +25,9 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('photo');
+
+        });
     }
 };

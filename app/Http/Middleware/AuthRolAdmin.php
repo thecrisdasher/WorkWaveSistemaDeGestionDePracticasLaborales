@@ -18,7 +18,7 @@ class AuthRolAdmin
     public function handle(Request $request, Closure $next)
     {
         if (!$request->user()->authorizeRoles(RolType::Admin->value)) {
-            return redirect('dashboard');
+            return redirect('principal');
         }
         return $next($request);
     }

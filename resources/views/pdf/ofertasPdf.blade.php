@@ -31,7 +31,6 @@
                                 <th>salario</th>
                                 <th>descripcion</th>
                                 <th>Empresa</th>
-                                <th>Acciones</th>
                            </tr>
                         </thead>
                         <tbody>

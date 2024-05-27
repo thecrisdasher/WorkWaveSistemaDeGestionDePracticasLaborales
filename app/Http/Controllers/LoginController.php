@@ -29,7 +29,7 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
 
-            return redirect()->intended('dashboard');
+            return redirect()->intended('principal');
         }
 
         return back()->withErrors([
@@ -45,5 +45,10 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/login');
+    }
+
+    public function quienSomos()
+    {
+        return view('pages.landing-page');
     }
 }
