@@ -193,9 +193,9 @@ class OfertaController extends Controller
         // Aquí podrías tener una tabla "postulaciones" que relacione usuarios con ofertas
 
         DB::table('solicitudes')->insert([
-            'id_hojadevida' => 1,
+            'id_hojadevida' => 2,
             'id_postulante' => $id_usuario,
-            'id_estadosolicitud' => 1,
+            'id_estadosolicitud' => 2,
             'id_oferta' => $id_oferta,
             'fecha_solicitud' => now()
         ]);

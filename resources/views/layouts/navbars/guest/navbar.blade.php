@@ -14,7 +14,7 @@
                         <span class="navbar-toggler-icon mt-2">
                             <span class="navbar-toggler-bar bar1"></span>
                             <span class="navbar-toggler-bar bar2"></span>
-                            <span class="navbar-toggler-bar bar3"></span>
+                            <span c lass="navbar-toggler-bar bar3"></span>
                         </span>
                     </button>
                     <div class="collapse navbar-collapse" id="navigation">

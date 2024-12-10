@@ -23,7 +23,7 @@ Route::get('/', function () {
             return redirect('/principal');
             break;
         default:
-            return redirect('/dashboard');
+            return redirect('/profile');
             break;
     }
 })->middleware('auth');
