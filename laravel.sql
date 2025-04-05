@@ -1,11 +1,5 @@
 
 --
--- Base de datos: `laravel`
---
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `empresas`
 --
 
