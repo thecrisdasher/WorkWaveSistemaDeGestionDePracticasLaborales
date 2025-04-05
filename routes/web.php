@@ -17,21 +17,19 @@ use App\Enums\RolType;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EstudiantePrincipalController;
 use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    switch (Request::user()->id_rol) {
+    $user = Auth::user(); // Obtiene el usuario autenticado
+    switch ($user->id_rol) {
         case RolType::Estudiante->value:
             return redirect('/principal');
-            break;
         case RolType::Admin->value:
             return redirect('/dashboard');
-            break;
         case RolType::Empresa->value:
             return redirect('/administrar-empresas');
-            break;
         default:
             return redirect('/principal');
-            break;
     }
 })->middleware('auth');
 
