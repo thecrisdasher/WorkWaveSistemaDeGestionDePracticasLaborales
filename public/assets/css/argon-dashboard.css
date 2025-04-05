@@ -5402,6 +5402,7 @@ fieldset:disabled .btn {
     border: 0 solid rgba(0, 0, 0, 0.125);
     border-radius: 1rem;
     align-items: center;
+    align-items: flex-start;
 }
 
 .card1 {

@@ -49,4 +49,10 @@ class Ofertas extends Model
     {
         return $this->hasMany(Solicitudes::class);
     }
+
+    // Relación con el modelo Postulacion
+    public function postulaciones(): HasMany
+    {
+        return $this->hasMany(Postulacion::class, 'oferta_id', 'id_oferta'); // Clave foránea y clave primaria personalizada
+    }
 }

@@ -36,15 +36,14 @@
                     <span class="nav-link-text ms-1">Mi Perfil</span>
                 </a>
             </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link {{ Route::currentRouteName() == 'principal' ? 'active' : '' }}" href="{{ route('principal') }}">
-                    <div
-                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
-                    </div>
-                    <span class="nav-link-text ms-1">Mis postulaciones</span>
-                </a>
-            </li> -->
+            <li class="nav-item">
+    <a class="nav-link {{ Route::currentRouteName() == 'statistics' ? 'active' : '' }}" href="{{ route('postulaciones.statistics') }}">
+        <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="ni ni-chart-bar-32 text-dark text-sm opacity-10"></i>
+        </div>
+        <span class="nav-link-text ms-1">Mis estadísticas</span>
+    </a>
+</li>
             @elseif ($userRole == \App\Enums\RolType::Admin->value)
             <li class="nav-item">
                 <a class="nav-link {{ Route::currentRouteName() == 'home' ? 'active' : '' }}" href="{{ route('page', ['page' => 'dashboard']) }}">

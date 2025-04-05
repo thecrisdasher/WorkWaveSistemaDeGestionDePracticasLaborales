@@ -93,6 +93,7 @@ Route::post('/profile/update-photo', [UserProfileController::class, 'updatePhoto
 Route::get('/oferta/{id_oferta}', [OfertaController::class, 'show'])->name('ofertas.show');
 Route::get('/QuienesSomos', [LoginController::class, 'quienSomos'])->middleware('guest')->name('QuienesSomos');
 Route::get('/principal', [estudiantePrincipalController::class, 'principal'])->name('principal');
+Route::get('/estadisticas', [App\Http\Controllers\PostulacionesController::class, 'statistics'])->name('postulaciones.statistics');
 
 
 //middleware
@@ -106,4 +107,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/sign-up-static', [PageController::class, 'signup'])->name('sign-up-static');
     Route::get('/{page}', [PageController::class, 'index'])->name('page');
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+  
 });
