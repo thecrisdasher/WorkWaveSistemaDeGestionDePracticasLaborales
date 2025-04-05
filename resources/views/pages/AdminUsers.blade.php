@@ -3,14 +3,16 @@
 @section('content')
     @include('layouts.navbars.auth.topnav', ['title' => 'Administra los Usuarios'])
 
-<div class="container-fluid py-4">
-        <div class="row">
+    <div class="container-fluid py-2" >
+        <div class="row" >
             <div class="col-xl-3 col-sm-6 mb-xl-4 mb-4">
-                <div class="table-responsive p-0">
-                    <div class="row mt-4 mx-4">
-                        <div class="col-12">
-                            <div class="alert alert-light" role="alert">
-                                Aqui podrás administrar los usuarios <strong>Modifica, crea o elimina!</strong>
+                <div class="card1" style="background-color: rgba(0, 0, 0, 0) !important; border: none !important;">
+                    <div class="card-body d-flex align-items-center justify-content-center p-3">
+                        <div class="row">
+                            <div class="col-8 text-center">
+                                <div class="numbers">
+                                    <h1 class="mt-3  text-white font-weight-bolder">Gestionar usuarios</h1>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -18,6 +20,7 @@
             </div>
         </div>
 </div>
+
 <div class="container-fluid col-12 py-0">
 <div class="ofertasshowadmin py-2 mt-6">
     <div class="row col-12 mt-4">

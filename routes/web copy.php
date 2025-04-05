@@ -15,22 +15,15 @@ use App\Http\Controllers\AdminEmpresasController;
 use App\Http\Controllers\SearchController;
 use App\Enums\RolType;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\EstudiantePrincipalController;
-use GuzzleHttp\Psr7\Request;
+use App\Http\Controllers\estudiantePrincipalController;
 
 Route::get('/', function () {
     switch (Request::user()->id_rol) {
         case RolType::Estudiante->value:
             return redirect('/principal');
             break;
-        case RolType::Admin->value:
-            return redirect('/dashboard');
-            break;
-        case RolType::Empresa->value:
-            return redirect('/administrar-empresas');
-            break;
         default:
-            return redirect('/principal');
+            return redirect('/profile');
             break;
     }
 })->middleware('auth');
@@ -73,28 +66,27 @@ Route::get('/', function () {
 
 Route::resource('/oferta', 'App\Http\Controllers\OfertaController')->middleware(['auth']);
 Route::resource('/admin-empresas', 'App\Http\Controllers\AdminEmpresasController')->middleware(['auth', AuthRolAdmin::class]);
-Route::resource('/principal', 'App\Http\Controllers\estudiantePrincipalController')->middleware(['auth', AuthRolStudent::class]);
+ Route::resource('/principal', 'App\Http\Controllers\estudiantePrincipalController')->middleware(['auth', AuthRolStudent::class]);
 Route::resource('/admin-users', 'App\Http\Controllers\UsersAdminController')->middleware(['auth', AuthRolAdmin::class]);
 Route::get('/busqueda', 'App\Http\Controllers\OfertaController@busqueda')->middleware(['auth', AuthRolStudent::class]);
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
-Route::post('/register', [RegisterController::class, 'store'])->middleware('guest')->name('register.perform');
-Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
-Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login.perform');
-Route::get('/reset-password', [ResetPassword::class, 'show'])->middleware('guest')->name('reset-password');
-Route::post('/reset-password', [ResetPassword::class, 'send'])->middleware('guest')->name('reset.perform');
-Route::get('/change-password', [ChangePassword::class, 'show'])->middleware('guest')->name('change-password');
-Route::post('/change-password', [ChangePassword::class, 'update'])->middleware('guest')->name('change.perform');
-Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('home')->middleware('auth');
-Route::get('imprimirUsers', 'App\http\Controllers\PdfController@imprimirUsers')->name('imprimirUsers');
-Route::get('imprimirOfertas', 'App\http\Controllers\PdfController@imprimirOfertas')->name('imprimirOfertas');
+ Route::post('/register', [RegisterController::class, 'store'])->middleware('guest')->name('register.perform');
+ Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
+ Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login.perform');
+ Route::get('/reset-password', [ResetPassword::class, 'show'])->middleware('guest')->name('reset-password');
+ Route::post('/reset-password', [ResetPassword::class, 'send'])->middleware('guest')->name('reset.perform');
+ Route::get('/change-password', [ChangePassword::class, 'show'])->middleware('guest')->name('change-password');
+ Route::post('/change-password', [ChangePassword::class, 'update'])->middleware('guest')->name('change.perform');
+ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('home')->middleware('auth');
+ Route::get('imprimirUsers', 'App\http\Controllers\PdfController@imprimirUsers')->name('imprimirUsers');
+ Route::get('imprimirOfertas', 'App\http\Controllers\PdfController@imprimirOfertas')->name('imprimirOfertas');
 Route::get('imprimirEmpresas', 'App\http\Controllers\PdfController@imprimirEmpresas')->name('imprimirEmpresas');
 Route::post('myurl', [SearchController::class, 'show']);
 Route::get('/oferta/detalle/{id}', [OfertaController::class, 'detalleOferta']);
-Route::post('/oferta/postularme/{id}', [OfertaController::class, 'postularme'])->name('oferta.postularme');
+Route::get('/oferta/postularme/{id}', [OfertaController::class, 'postularme'])->name('oferta.postularme');
 Route::post('/profile/update-photo', [UserProfileController::class, 'updatePhoto'])->name('profile.update-photo');
 Route::get('/oferta/{id_oferta}', [OfertaController::class, 'show'])->name('ofertas.show');
 Route::get('/QuienesSomos', [LoginController::class, 'quienSomos'])->middleware('guest')->name('QuienesSomos');
-Route::get('/principal', [estudiantePrincipalController::class, 'principal'])->name('principal');
 
 
 //middleware
@@ -108,4 +100,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/sign-up-static', [PageController::class, 'signup'])->name('sign-up-static');
     Route::get('/{page}', [PageController::class, 'index'])->name('page');
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
 });
+

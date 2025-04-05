@@ -81,10 +81,7 @@ return new class extends Migration
             $table->foreign('id_estadosolicitud')->references('id_estadosolicitud')->on('estados_solicitudes');
             $table->foreign('id_oferta')->references('id_oferta')->on('ofertas');
         });
-        Schema::create('roles', function (Blueprint $table) {
-            $table->id('id_rol');
-            $table->string('tipo_rol_usuario',255);
-        });
+    
     }
 
     /**

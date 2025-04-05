@@ -104,9 +104,11 @@ class User extends Authenticatable
     }
     public function hasRole($role)
     {
-        if ($this->id_rol == $role) {
-            return true;
-        }
-        return false;
+        return $this->id_rol === $role;
+    }
+
+    public function empresas()
+    {
+        return $this->hasMany(Empresas::class, 'id_usuario');
     }
 }

@@ -1,13 +1,11 @@
 @extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
 
+@extends('layouts.app', ['class' => 'g-sidenav-show bg-gray-100'])
+
 @section('content')
     @include('layouts.navbars.auth.topnav', ['title' => 'Dashboard'])
-
-
-    @include('layouts.footers.auth.footer')
+    @include('layouts.dashboard.dashboard-content')
 @endsection
-
-
 @push('js')
     <script src="./assets/js/plugins/chartjs.min.js"></script>
     <script>

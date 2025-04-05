@@ -82,7 +82,8 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
+
 
     /*
     |--------------------------------------------------------------------------
@@ -155,6 +156,8 @@ return [
     */
 
     'providers' => [
+
+        Reliese\Coders\CodersServiceProvider::class,
 
         /*
          * Laravel Framework Service Providers...

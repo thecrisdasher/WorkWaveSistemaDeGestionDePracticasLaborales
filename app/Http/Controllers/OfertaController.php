@@ -20,9 +20,10 @@ class OfertaController extends Controller
      */
     public function index()
     {
-
         $oferta = Ofertas::paginate(4);
         return view('oferta.index', compact('oferta'));
+
+     
 
     }
 
@@ -76,11 +77,24 @@ class OfertaController extends Controller
      */
     public function show($id_oferta)
     {
-
+        // Obtener la oferta actual
         $oferta = Ofertas::find($id_oferta);
-        return view('oferta.show', compact('oferta'));
+        
+        // Obtener otras ofertas (puedes modificar la lógica según tus necesidades)
+        $otras_ofertas = Ofertas::where('id_oferta', '!=', $id_oferta) // Excluir la oferta actual
+                                 ->take(5) // Puedes ajustar la cantidad de ofertas mostradas
+                                 ->get();
+    
 
+        // Obtener otras ofertas (puedes modificar la lógica según tus necesidades)
+        $todas_ofertas = Ofertas::where('id_oferta', '!=', $id_oferta) // Excluir la oferta actual
+                                 ->take(5) // Puedes ajustar la cantidad de ofertas mostradas
+                                 ->get();
+
+        // Pasar tanto la oferta actual como las otras ofertas a la vista
+        return view('oferta.show', compact('oferta', 'otras_ofertas', 'todas_ofertas'));
     }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -170,38 +184,46 @@ class OfertaController extends Controller
         return response()->json($oferta);
     }
 
-    public function postularme(Request $request)
+    public function postularme(Request $request, $id_oferta)
     {
-
-        // dd($request->id);
-        $id_oferta = $request->id;
-        $id_usuario = auth()->id(); // SE ASUME que el usuario está autenticado
-
-        // Verificar si el usuario ya se ha postulado a esta oferta (puedes usar tu lógica aquí)
+        $id_usuario = auth()->id(); // Obtener el ID del usuario autenticado
+    
+        // Verificar si el usuario ya se postuló a la oferta
         $yaPostulado = DB::table('solicitudes')
-            ->where('id_hojadevida', 1) // Suponiendo que tienes una relación entre usuarios y postulaciones
             ->where('id_postulante', $id_usuario)
             ->where('id_oferta', $id_oferta)
             ->exists();
-
+    
         if ($yaPostulado) {
-            // Si el usuario ya se ha postulado, retornar un mensaje indicando esto
+            // Si el usuario ya se postuló, retornar un mensaje indicando esto
             return response()->json(['message' => 'Ya te has postulado a esta oferta'], 400);
         }
-
-        // Lógica para guardar la postulación
-        // Aquí podrías tener una tabla "postulaciones" que relacione usuarios con ofertas
-
+    
+        // Lógica para guardar la postulación (solo si no está postulada)
         DB::table('solicitudes')->insert([
-            'id_hojadevida' => 2,
+            'id_hojadevida' => 2,  // Este valor debe ser reemplazado con el correcto
             'id_postulante' => $id_usuario,
-            'id_estadosolicitud' => 2,
+            'id_estadosolicitud' => 2,  // Estado 2 puede significar "Pendiente"
             'id_oferta' => $id_oferta,
-            'fecha_solicitud' => now()
+            'fecha_solicitud' => now(),
         ]);
-
+    
+        // Retorna el mensaje de postulación exitosa
         return response()->json(['message' => 'Postulación exitosa'], 200);
     }
+    
+    
 
 
+    public function showofertas($id)
+    {
+        $oferta = Oferta::findOrFail($id);
+        
+        // Obtener otras ofertas (puedes cambiar el criterio de búsqueda según lo necesites)
+        $otras_ofertas = Oferta::where('id_oferta', '!=', $id) // No mostrar la misma oferta
+                               ->take(5) // Mostrar un máximo de 5 ofertas
+                               ->get();
+    
+        return view('oferta.show', compact('oferta', 'otras_ofertas'));
+    }
 }

@@ -11,10 +11,11 @@ class AdminEmpresasController extends Controller
 {
     public function index()
     {
-        $admin_empresas = Empresas::all();
+        $admin_empresas = Empresas::paginate(4);
         return view('admin-empresas.admin-empresa', compact('admin_empresas'));
 
     }
+
     public function create()
     {
 
@@ -81,18 +82,20 @@ class AdminEmpresasController extends Controller
      */
     public function update(Request $request, $id_empresa)
     {
-        $admin_empresas = Empresas::find($id_empresa);
+        // Encuentra el registro existente por su ID
+        $admin_empresas = Empresas::findOrFail($id_empresa);
+
+        // Actualiza los campos con los datos del formulario
         $admin_empresas->nombre = $request->nombre;
         $admin_empresas->razon_social = $request->razon_social;
-        $admin_empresas->id_usuario = 1;
-        $admin_empresas->id_ubicacion = 1;
+        $admin_empresas->id_usuario = 1; // Puedes ajustar esto según tu lógica
+        $admin_empresas->id_ubicacion = 1; // Puedes ajustar esto según tu lógica
 
-        // Actualizo los datos en la tabla 'productos'
+        // Guarda los cambios en la base de datos
         $admin_empresas->save();
-        // Muestro un mensaje y redirecciono a la vista principal
-        Session::flash('message', 'Editado Satisfactoriamente !');
-        return Redirect::to('admin-empresas');
 
+        // Redirige con un mensaje de éxito
+        return redirect('admin-empresas')->with('message', 'Empresa actualizada satisfactoriamente!');
     }
 
     /**

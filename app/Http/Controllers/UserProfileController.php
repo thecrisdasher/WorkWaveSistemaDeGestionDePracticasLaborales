@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str; // Asegúrate de importar la clase Str
+use Illuminate\Support\Str;
 
 class UserProfileController extends Controller
 {
@@ -14,8 +14,10 @@ class UserProfileController extends Controller
     {
         return view('pages.user-profile');
     }
+
     public function update(Request $request)
     {
+        // Validación de los datos del formulario
         $attributes = $request->validate([
             'username' => ['required', 'max:255', 'min:2'],
             'firstname' => ['max:100'],
@@ -29,16 +31,24 @@ class UserProfileController extends Controller
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $fileName = $file->getClientOriginalName(); // Usa el nombre original del archivo
-            $filePath = $file->storeAs('profile_photos', $fileName, 'public');
+        $user = auth()->user();
 
-            auth()->user()->update(['photo' => $filePath]);
+        // Si hay una foto, se actualiza
+        if ($request->hasFile('photo')) {
+            // Elimina la imagen anterior si existe
+            if ($user->photo && Storage::disk('public')->exists($user->photo)) {
+                Storage::disk('public')->delete($user->photo);
+            }
+
+            // Guarda la nueva imagen con un nombre único
+            $file = $request->file('photo');
+            $fileName = Str::uuid() . '.' . $file->getClientOriginalExtension(); // Genera un nombre único
+            $filePath = $file->storeAs('profile_photos', $fileName, 'public');
+            $user->photo = $filePath; // Actualiza la ruta en la base de datos
         }
 
-        // Luego actualizar los demás campos del perfil del usuario
-        auth()->user()->update([
+        // Actualizamos el resto de los datos del perfil del usuario
+        $user->update([
             'username' => $request->get('username'),
             'firstname' => $request->get('firstname'),
             'lastname' => $request->get('lastname'),
@@ -50,9 +60,11 @@ class UserProfileController extends Controller
             'about' => $request->get('about'),
         ]);
 
-        // Envía una respuesta JSON para manejarla en el frontend
-        return response()->json(['message' => 'Postulación exitosa'], 200);
+        // Respuesta JSON
+        return response()->json([
+            'success' => true,
+            'message' => 'Se actualizó el perfil correctamente.',
+            'photo_url' => $user->photo ? Storage::url($user->photo) : null, // Pasamos la URL de la foto actualizada
+        ], 200);
     }
-
-
 }

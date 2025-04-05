@@ -9,8 +9,9 @@ use Redirect;
 
 class UsersAdminController extends Controller
 {
-    public function index(){
-        $users_admin = User::all();
+    public function index()
+    {
+        $users_admin = User::paginate(4);
         return view('admin-users.admin-user', compact('users_admin'));
     }
 
@@ -26,7 +27,7 @@ class UsersAdminController extends Controller
         return view('admin-users.edit', compact('users_admin'));
     }
 
-     /**
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -34,45 +35,63 @@ class UsersAdminController extends Controller
      */
     public function store(Request $request)
     {
-        // Instancio al modelo Productos que hace llamado a la tabla 'productos'
-        $users_admin = new User;
-        // Recibo todos los datos del formulario de la vista
-        $users_admin->nombre_usuario = $request->nombre_usuario;
-        $users_admin->nombre = $request->nombre;
-        $users_admin->apellido = $request-> apellido;
-        $users_admin->email = $request-> email;
-        $users_admin->ciudad = $request->ciudad;
-        $users_admin->postal = 1;
-        $users_admin->Sobre = 1;
+        try {
+            // Validar los datos del formulario
+            $validatedData = $request->validate([
+                'username' => 'required|max:255|unique:users',
+                'id_rol' => 'required|max:255',
+                'firstname' => 'required|max:100',
+                'lastname' => 'required|max:100',
+                'email' => 'required|email|max:255|unique:users',
+                'password' => 'required|min:8|confirmed', // Validación para la contraseña
+                'city' => 'nullable|max:100',
+                'postal' => 'nullable|max:20',
+                'about' => 'nullable|max:255',
+            ]);
 
-        // Almacenos la imagen en la carpeta publica especifica,
-        // Guardamos la fecha de creación del registro
-        //$oferta->created_at = (new DateTime)->getTimestamp();
-        // Inserto todos los datos en mi tabla 'productos'
-        $users_admin->save();
-        // Hago una redirección a la vista principal con un mensaje
-        return redirect('admin-users')->with('message', 'Usuario Guardada
-        Satisfactoriamente !');
+            // Crear un nuevo usuario
+            $users_admin = new User;
+            $users_admin->username = $validatedData['username'];
+            $users_admin->id_rol = $validatedData['id_rol'];
+            $users_admin->firstname = $validatedData['firstname'];
+            $users_admin->lastname = $validatedData['lastname'];
+            $users_admin->email = $validatedData['email'];
+            $users_admin->password = bcrypt($validatedData['password']); // Encripta la contraseña
+            $users_admin->city = $validatedData['city'];
+            $users_admin->postal = $validatedData['postal'];
+            $users_admin->about = $validatedData['about'];
 
+            // Guardar el usuario en la base de datos
+            $users_admin->save();
+            // Redirigir con un mensaje de éxito
+            return redirect('admin-users')->with('message', 'Usuario guardado satisfactoriamente!');
+        } catch (\Exception $e) {
+            // Captura el error y redirige con el mensaje
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
+
     public function update(Request $request, $id)
     {
         $users_admin = User::find($id);
         $users_admin->username = $request->username;
+        $users_admin->id_rol = $request->id_rol;
         $users_admin->firstname = $request->firstname;
-        $users_admin->lastname = $request-> lastname;
-        $users_admin->email = $request-> email;
+        $users_admin->lastname = $request->lastname;
+        $users_admin->email = $request->email;
         $users_admin->city = $request->city;
         $users_admin->postal = 1;
         $users_admin->about = $request->about;
 
+        if ($request->filled('password')) {
+            $users_admin->password = bcrypt($request->password); // Actualiza la contraseña solo si se proporciona
+        }
 
-        // Actualizo los datos en la tabla 'productos'
+        // Actualizo los datos en la tabla 'usuarios'
         $users_admin->save();
         // Muestro un mensaje y redirecciono a la vista principal
         Session::flash('message', 'Editado Satisfactoriamente !');
         return Redirect::to('admin-users');
-
     }
 
     /**
@@ -83,19 +102,22 @@ class UsersAdminController extends Controller
      */
     public function destroy($id)
     {
-        // Indicamos el 'id' del registro que se va Eliminar
-        $users_admin = User::find($id);
-        // Elimino la imagen de la carpeta 'uploads'
+        try {
+            // Buscar el usuario
+            $users_admin = User::find($id);
 
+            // Eliminar los registros relacionados en la tabla 'empresas'
+            $users_admin->empresas()->delete(); // Asegúrate de tener una relación definida en el modelo User
 
-        // Elimino el registro de la tabla 'productos'
-        User::destroy($id);
-        // Opcional: Si deseas guardar la fecha de eliminación de un registro, debes
-// $productos->deleted_at = (new DateTime)->getTimestamp();
+            // Eliminar el usuario
+            $users_admin->delete();
 
-        // Muestro un mensaje y redirecciono a la vista principal
-        Session::flash('message', 'Eliminado Satisfactoriamente !');
-        return Redirect::to('admin-users');
+            // Mostrar un mensaje y redirigir
+            Session::flash('message', 'Eliminado Satisfactoriamente!');
+            return Redirect::to('admin-users');
+        } catch (\Exception $e) {
+            // Capturar errores y redirigir con mensaje
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
-
 }

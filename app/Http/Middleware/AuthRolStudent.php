@@ -18,7 +18,7 @@ class AuthRolStudent
     public function handle(Request $request, Closure $next)
     {
         if (!$request->user()->authorizeRoles(RolType::Estudiante->value)) {
-            return redirect('dashboard');
+            return redirect('principal');
         }
         return $next($request);
     }

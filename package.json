@@ -12,6 +12,9 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "animate.css": "^4.1.1",
+        "aos": "^2.3.4",
+        "bootstrap": "^5.3.3",
         "perfect-scrollbar": "^1.5.5"
     }
 }
