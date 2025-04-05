@@ -17,6 +17,8 @@ use App\Enums\RolType;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EstudiantePrincipalController;
 use GuzzleHttp\Psr7\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 oute::get('/', function () {
     $user = Auth::user(); // Obtiene el usuario autenticado
