@@ -19,8 +19,7 @@ use App\Http\Controllers\EstudiantePrincipalController;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 
-
-oute::get('/', function () {
+Route::get('/', function () {
     $user = Auth::user(); // Obtiene el usuario autenticado
     switch ($user->id_rol) {
         case RolType::Estudiante->value:
@@ -33,10 +32,6 @@ oute::get('/', function () {
             return redirect('/principal');
     }
 })->middleware('auth');
-
-
-
-
 
 // Ruta para el dashboard
 
