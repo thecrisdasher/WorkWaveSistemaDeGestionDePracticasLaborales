@@ -26,13 +26,14 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        // Intenta autenticar al usuario con las credenciales proporcionadas
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            //return redirect()->intended('profile');
             return redirect()->intended('profile');
         }
 
+        // Devuelve un mensaje de error si las credenciales no coinciden
         return back()->withErrors([
             'email' => 'Las credenciales proporcionadas no coinciden con nuestros registros.',
         ]);

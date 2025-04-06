@@ -1,0 +1,8 @@
+BUGS CRUD 
+
+
+
+
+- No esta funcionando el apartado para postular
+- El login no esta funcionando correcto (es por el cifrado de las contraseñas )
+- Agregar boton limpiar filtros
