@@ -3,7 +3,6 @@
 ### 🚨 Problemas Pendientes:
 1. ❌ **El apartado para postular no está funcionando.**
 2. ❌ **El login no funciona correctamente (problema con el cifrado de contraseñas).**
-3. ➕ **Agregar botón para limpiar filtros.**
 
 ---
 
@@ -18,4 +17,4 @@
 8. 🔍 **Al buscar una oferta, ahora muestra todas las ofertas relacionadas en lugar de redirigir directamente a una oferta.** (✔️ OK)
 9. 🧹 **El filtro de usuarios por nombre ahora funciona correctamente, y la tabla de información está mejor organizada.** (✔️ OK)
 10. 📱 **El CRUD ahora se adapta correctamente a pantallas pequeñas.** (✔️ OK)
-11. 💡 **Agregar apartado de skills o habilidades en el rol de usuario-estudiante.** (✔️ OK)
+11. 💡 **Agregar apartado de skills o habilidades en el rol de usuario-estudiante.** ( Pendiente )

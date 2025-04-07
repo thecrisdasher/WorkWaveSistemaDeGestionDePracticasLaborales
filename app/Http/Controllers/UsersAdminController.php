@@ -56,7 +56,7 @@ class UsersAdminController extends Controller
             $users_admin->firstname = $validatedData['firstname'];
             $users_admin->lastname = $validatedData['lastname'];
             $users_admin->email = $validatedData['email'];
-            $users_admin->password = bcrypt($validatedData['password']); // Encripta la contraseña
+            $users_admin->password = $validatedData['password']; // El mutador en el modelo se encargará de cifrarla
             $users_admin->city = $validatedData['city'];
             $users_admin->postal = $validatedData['postal'];
             $users_admin->about = $validatedData['about'];
@@ -80,11 +80,11 @@ class UsersAdminController extends Controller
         $users_admin->lastname = $request->lastname;
         $users_admin->email = $request->email;
         $users_admin->city = $request->city;
-        $users_admin->postal = 1;
+        $users_admin->postal = $request->postal;
         $users_admin->about = $request->about;
 
         if ($request->filled('password')) {
-            $users_admin->password = bcrypt($request->password); // Actualiza la contraseña solo si se proporciona
+            $users_admin->password = $request->password; // El mutador en el modelo se encargará de cifrarla
         }
 
         // Actualizo los datos en la tabla 'usuarios'

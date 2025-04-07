@@ -35,9 +35,16 @@
                             <p>{{ $oferta->Ubicacion->ciudad}} - {{ \Carbon\Carbon::parse($oferta->updated_at)->diffForHumans() }}
                             </p>
                             <meta name="csrf-token" content="{{ csrf_token() }}">
-                            <button id="postularmeButton" class="btn btn-primary" data-id-oferta="{{ $oferta->id_oferta }}" onclick="postularme(this)">
-                                Postularme
-                            </button>
+                            <!-- Botón Postularme -->
+                            @if(auth()->check())
+                                <button id="postularmeButton" class="btn btn-primary" data-id-oferta="{{ $oferta->id_oferta }}" onclick="postularme(this)">
+                                    Postularme
+                                </button>
+                            @else
+                                <a href="{{ route('login') }}" class="btn btn-secondary">
+                                    Inicia sesión para postularte
+                                </a>
+                            @endif
                             <h3 style="color: #000; font-size: 20px; margin-bottom: 0;">Acerca del empleo</h3>
                             <p class="mt-4" style="color: #373737;     margin-top: 0 !important;
                             font-size: 15px;">{{ $oferta->nombre_oferta }}</p>

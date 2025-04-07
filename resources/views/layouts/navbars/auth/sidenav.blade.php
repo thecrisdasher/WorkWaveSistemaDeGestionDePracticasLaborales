@@ -54,7 +54,15 @@
                     <span class="nav-link-text ms-1">Dashboard Admin</span>
                 </a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link {{ Route::currentRouteName() == 'principal' ? 'active' : '' }}" href="{{ route('page', ['page' => 'principal']) }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Principal Estudiante</span>
+                </a>
+            </li>
 
             {{-- Menú común para todos los roles --}}
             <li class="nav-item mt-3 d-flex align-items-center">
