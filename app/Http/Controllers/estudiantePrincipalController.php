@@ -25,8 +25,8 @@ class EstudiantePrincipalController extends Controller
             }
         }
 
-        // Filtro por Cargo
-        if ($request->filled('cargo')) {
+        // Filtro por Cargo (Empresa)
+        if ($request->filled('cargo') && $request->cargo !== 'all') {
             $cargo = $request->cargo;
             $ofertas->whereHas('empresa', function($query) use ($cargo) {
                 $query->where('nombre', $cargo);
@@ -44,8 +44,6 @@ class EstudiantePrincipalController extends Controller
             return view('partials.ofertas-list', compact('ofertas'));
         }
 
-
-        
         // Devolver la vista principal con las ofertas
         $empresas = Empresas::all();
         return view('principal-window-user.principal-window-student', compact('ofertas', 'empresas'));
@@ -53,7 +51,6 @@ class EstudiantePrincipalController extends Controller
 
     public function index()
     {
-       
         $empresas = Empresas::all(); 
         $ofertas = Ofertas::all();
       

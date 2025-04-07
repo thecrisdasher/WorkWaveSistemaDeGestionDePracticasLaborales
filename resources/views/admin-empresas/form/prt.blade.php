@@ -15,17 +15,67 @@
                     </div>
                 </div>
 
+                <div class="mb-3">
+    <label for="razon_social" class="negrita">Razón Social:</label>
+    <div>
+        <textarea class="form-control" style="height: 130px; resize: none;" 
+                  placeholder="{{ isset($admin_empresas) ? $admin_empresas->razon_social : 'Empresa dedicada a...' }}" 
+                  required="required" 
+                  name="razon_social" 
+                  id="razon_social" 
+                  oninput="autoResize(this)">
+            {{ old('razon_social', isset($admin_empresas) ? $admin_empresas->razon_social : '') }}
+        </textarea>
+    </div>
+</div>
+
+<script>
+    // Función para ajustar dinámicamente el tamaño del textarea
+    function autoResize(textarea) {
+        textarea.style.height = 'auto';  // Reseteamos la altura
+        textarea.style.height = (textarea.scrollHeight) + 'px';  // Establecemos la nueva altura
+    }
+</script>
+
+
+
+
+
 
                 <div class="mb-3">
-                    <label for="razon_social" class="negrita">Razon Social:</label>
+                    <label for="razon_social" class="negrita">Tipo empresa:</label>
                     <div>
-                        <input class="form-control" style="height: 130px;"
-                            placeholder="{{ isset($admin_empresas) ? $admin_empresas->razon_social : 'Empresa dedicada a...' }}"
+                        <input class="form-control" 
+                            placeholder="{{ isset($admin_empresas) ? $admin_empresas->tipo_empresa : 'Empresa dedicada a...' }}"
                             required="required"
-                            name="razon_social"
+                            name="tipo_empresa"
                             type="text"
-                            id="razon_social"
-                            value="{{ old('Razon social', isset($admin_empresas) ? $admin_empresas->razon_social : '') }}">
+                            id="tipo_empresa"
+                            value="{{ old('Razon social', isset($admin_empresas) ? $admin_empresas->tipo_empresa : '') }}">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="razon_social" class="negrita">Nit:</label>
+                    <div>
+                        <input class="form-control" 
+                            placeholder="{{ isset($admin_empresas) ? $admin_empresas->nit : 'Empresa dedicada a...' }}"
+                            required="required"
+                            name="nit"
+                            type="text"
+                            id="nit"
+                            value="{{ old('Razon social', isset($admin_empresas) ? $admin_empresas->nit : '') }}">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="razon_social" class="negrita">Correo:</label>
+                    <div>
+                        <input class="form-control" 
+                            placeholder="{{ isset($admin_empresas) ? $admin_empresas->correo : 'Empresa dedicada a...' }}"
+                            required="required"
+                            name="correo"
+                            type="text"
+                            id="correo"
+                            value="{{ old('Razon social', isset($admin_empresas) ? $admin_empresas->correo : '') }}">
                     </div>
                 </div>
 

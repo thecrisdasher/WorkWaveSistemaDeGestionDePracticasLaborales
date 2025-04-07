@@ -6,3 +6,17 @@ BUGS CRUD
 - No esta funcionando el apartado para postular
 - El login no esta funcionando correcto (es por el cifrado de las contraseñas )
 - Agregar boton limpiar filtros
+
+
+
+•	Poder agregar el nit de la empresa o informacion más relevante de la empresa. (OK)
+•	Que la descripción se expanda hacia abajo, tipo rectangular para que el Admin puede ver al final lo que escribo. (OK)
+•	Que el perfil sea más grande, ocupe más pantalla, el mismo ancho de la tarjeta en donde este el “Hola, Administrador” (OK)
+•	Agregar opción de “Seleccionar Todas”.  (OK)
+•	El apartado de empresas se ve vacío, agregar una tarjeta más grande o implementar algo para que se vea visualmente mejor y no tan vacío. – (pendiente)
+•	Acomodar el ver oferta cuando la descripción no es tan grande. (OK)
+•	Agregar el apartado de “Ver postulaciones” (OK)
+•	Al buscar una oferta no debe llevarnos directamente a la oferta, deberÍa mostrar todas las ofertas que estén con ese nombre o similares – (pendiente)
+•	No está filtrando los usuarios por nombre, y que la tabla de la informacion se vea mejor organizada. (OK)
+•	En pantallas chicas no se termina de ver correctamente el crud. (OK)
+•	Agregar apartado de skills o habilidades en rol usuario - estudiante.

@@ -7,10 +7,11 @@
 
     <a href="{{ route('admin-empresas.create') }}" class="btn btn-success mt-4 ml-3 mb-4 " style="width: 300px;">Agregar empresa</a>
     <!-- Campo de búsqueda -->
-    <div class="mb-3">
-        <label for="filter-nombre" class="form-label">Filtrar por Nombre:</label>
-        <input type="text" id="filter-nombre" class="form-control" placeholder="Buscar por nombre..." style="width: 300px;">
-    </div>
+      <!-- Campo de búsqueda -->
+      <div class="mb-3">
+                    <label for="filter-nombre" class="form-label">Filtrar por caracter:</label>
+                    <input type="text" id="filter-nombre" class="form-control" placeholder="Buscar por caracter..." style="width: 300px;">
+                </div>
 
 
     <table class="table align-items-center mb-0">
@@ -18,6 +19,9 @@
             <tr>
                 <th>Nombre</th>
                 <th>Razón Social</th>
+                <th>tipo empresa</th>
+                <th>nit</th>
+                <th>correo</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -26,6 +30,9 @@
             <tr>
                 <td class="v-align-middle">{{ $admin_empresa->nombre }}</td>
                 <td class="v-align-middle">{{ $admin_empresa->razon_social }}</td>
+                <td class="v-align-middle">{{ $admin_empresa->tipo_empresa }}</td>
+                <td class="v-align-middle">{{ $admin_empresa->nit }}</td>
+                <td class="v-align-middle">{{ $admin_empresa->correo }}</td>
                 <td class="v-align-middle">
                     <form action="" method="POST" class="form-horizontal" role="form">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">

@@ -59,7 +59,7 @@
 <section>
     <div class="container" style="margin-bottom: 30px; top: 80px; position: relative; display: flex; justify-content: center; flex-wrap: wrap; width: 100%;">
         <form method="GET" action="{{ route('principal') }}" id="filter-form">
-            <div class="row" style="    gap: 100px;">
+            <div class="row" style="gap: 100px;">
                 <div class="col-md-4">
                     <label for="fecha_publicacion" class="form-label">Fecha de Publicación</label>
                     <select name="fecha_publicacion" class="form-select" id="fecha_publicacion" style="width: 250px;">
@@ -71,18 +71,22 @@
                 </div>
 
                 <div class="col-md-4">
-                    <label for="cargo" class="form-label">Empresa</label>
-                    <select name="cargo" class="form-select" id="cargo" style="width: 250px;">
-                        <option value="">Selecciona una empresa</option>
-                        @foreach ($empresas as $empresa)
-                        <option value="{{ $empresa->nombre }}" {{ request('cargo') == $empresa->nombre ? 'selected' : '' }}>
-                            {{ $empresa->nombre }}
-                        </option>
-                        @endforeach
-                    </select>
-                </div>
+    <label for="cargo" class="form-label">Empresa</label>
+    <select name="cargo" class="form-select" id="cargo" style="width: 250px;">
+        <option value="">Selecciona una empresa</option>
+        <option value="all" {{ request('cargo') == 'all' ? 'selected' : '' }}>Seleccionar todas</option>
+        @foreach ($empresas as $empresa)
+        <option value="{{ $empresa->nombre }}" {{ request('cargo') == $empresa->nombre ? 'selected' : '' }}>
+            {{ $empresa->nombre }}
+        </option>
+        @endforeach
+    </select>
+</div>
+
             </div>
             <button type="submit" class="btn btn-primary mt-3">Aplicar Filtros</button>
+            <button type="button" class="btn btn-secondary mt-3" id="reset-filters">
+            <a style="color: white;" href="{{ route('page', ['page' => 'principal']) }}">Limpiar Filtros</a></button>
         </form>
     </div>
 
@@ -95,7 +99,7 @@
         <div class="row">
             @foreach($ofertas as $oferta)
             <div class="col-md-6 mb-4">
-                <div class="card" style="border: none; padding: 15px;">
+                <div class="card" style="border: none; padding: 15px; align-items: flex-start;">
                     <div class="card-body">
                         <h5 class="card-title">{{ $oferta->nombre_oferta }}</h5>
                         <p style="height: 100px; overflow: hidden;">{{ $oferta->descripcion}}.....</p>
@@ -122,6 +126,8 @@
         @endforeach
     </div>
 </div>
+
+
 
 
 @endsection

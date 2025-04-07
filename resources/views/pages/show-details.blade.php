@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-8 text-center">
                             <div class="numbers">
-                                <h1 class="mt-3  text-white font-weight-bolder" style="width: 600px;">Conoce la propuesta de <strong style="color: aqua; ">{{ $oferta->nombre_oferta }}</strong></h1>
+                                <h1 class="mt-3  text-white font-weight-bolder" style="width: 600px;">Conoce la oferta de <strong style="color: aqua; ">{{ $oferta->nombre_oferta }}</strong></h1>
                             </div>
                         </div>
                     </div>
@@ -23,13 +23,9 @@
     </div>
 </div>
 
-
-
-
 <div class="container-fluid col-12 py-0 row mt-0 mx-4 ">
     <div class="ofertasshowadmins mt-1" style="display: flex; align-items: center;
-    justify-content: center;
-">
+    justify-content: center;">
         <div class="row mt-1">
             <div class="col-lg-12 mb-lg-0 mb-4">
                 <div class="card ">
@@ -38,21 +34,19 @@
                             <p style="color: #000;  font-weight: bold; font-size: 30px;" class="mt-4">{{ $oferta->nombre_oferta }}</p>
                             <p>{{ $oferta->Ubicacion->ciudad}} - {{ \Carbon\Carbon::parse($oferta->updated_at)->diffForHumans() }}
                             </p>
-
                             <meta name="csrf-token" content="{{ csrf_token() }}">
                             <button id="postularmeButton" class="btn btn-primary" data-id-oferta="{{ $oferta->id_oferta }}" onclick="postularme(this)">
                                 Postularme
                             </button>
                             <h3 style="color: #000; font-size: 20px; margin-bottom: 0;">Acerca del empleo</h3>
                             <p class="mt-4" style="color: #373737;     margin-top: 0 !important;
-    font-size: 15px;">{{ $oferta->nombre_oferta }}</p>
+                            font-size: 15px;">{{ $oferta->nombre_oferta }}</p>
                             <p>{{ $oferta->descripcion}}</p>
-                        </header>
-                        <p><strong>Salario: </strong>{{ $oferta->salario}}</p>
-                        <hr>
-                        <div style="border: 1px solid rgba(0, 0, 0, 0.19); padding: 20px; border-radius: 15px;">
+                            </header>
+                            <p><strong>Salario: </strong>{{ $oferta->salario}}</p>
+                            <hr>
+                            <div style="border: 1px solid rgba(0, 0, 0, 0.19); padding: 20px; border-radius: 15px;">
                             <h3 style="color: #595959; font-size: 20px;">Acerca de la empresa</h3>
-
                             <p style="color:rgb(41, 41, 41)">{{$oferta->Empresa->nombre}}
                             <p p class="col-7 text-justify">{{ $oferta->Empresa->razon_social}}</p>
                             </p>
@@ -63,6 +57,7 @@
         </div>
     </div>
 </div>
+
 <!-- Slider de Ofertas -->
 <h2 style="text-align: center; font-size: 24px; color: #000; margin: 40px 0;">Otras ofertas</h2>
 <div class="container-fluid mt-5" style="    
@@ -84,7 +79,6 @@
     </div>
 </div>
 
-
 @endsection
 @push('js')
 <script>
@@ -96,33 +90,35 @@
         console.log('Postulando a la oferta con ID:', ofertaId); // Depuración
 
         fetch(`/oferta/postularme/${ofertaId}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': token
-            },
-            body: JSON.stringify({ id: ofertaId })
-        })
-        .then(response => {
-            if (!response.ok) {
-                return response.json().then(data => {
-                    console.error('Error:', data.message); // Depuración
-                    alert(data.message);
-                    button.innerHTML = 'Ya te has postulado';
-                    button.disabled = true;
-                });
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Respuesta exitosa:', data.message); // Depuración
-            alert(data.message);
-            button.innerHTML = 'Ya te has postulado';
-            button.disabled = true;
-        })
-        .catch(error => {
-            console.error('Error en la solicitud:', error);
-        });
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': token
+                },
+                body: JSON.stringify({
+                    id: ofertaId
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(data => {
+                        console.error('Error:', data.message); // Depuración
+                        alert(data.message);
+                        button.innerHTML = 'Ya te has postulado';
+                        button.disabled = true;
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Respuesta exitosa:', data.message); // Depuración
+                alert(data.message);
+                button.innerHTML = 'Ya te has postulado';
+                button.disabled = true;
+            })
+            .catch(error => {
+                console.error('Error en la solicitud:', error);
+            });
     }
 </script>
 @endpush
@@ -130,7 +126,6 @@
 @push('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-
 <script>
     $(document).ready(function() {
         // Activamos el slider
@@ -158,12 +153,10 @@
 </script>
 @endpush
 
-
 @push('js')
 <script src="./assets/js/plugins/chartjs.min.js"></script>
 <script>
     var ctx1 = document.getElementById("chart-line").getContext("2d");
-
     var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
 
     gradientStroke1.addColorStop(1, 'rgba(251, 99, 64, 0.2)');

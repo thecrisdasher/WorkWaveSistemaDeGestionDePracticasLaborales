@@ -1395,7 +1395,7 @@ h1.titulo-centrado {
 
     .col-md-8 {
         flex: 0 0 auto;
-        width: 66.66666667%;
+        width: 100%;
     }
 
     .col-md-9 {
@@ -5402,7 +5402,6 @@ fieldset:disabled .btn {
     border: 0 solid rgba(0, 0, 0, 0.125);
     border-radius: 1rem;
     align-items: center;
-    align-items: flex-start;
 }
 
 .card1 {
@@ -22678,6 +22677,7 @@ hr.horizontal.gray-light {
     }
     .sidenav.fixed-start + .main-content {
         margin-left: 17.125rem;
+        width: auto;
     }
     .sidenav.fixed-end + .main-content {
         margin-right: 17.125rem;

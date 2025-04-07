@@ -13,7 +13,6 @@ class AdminEmpresasController extends Controller
     {
         $admin_empresas = Empresas::paginate(4);
         return view('admin-empresas.admin-empresa', compact('admin_empresas'));
-
     }
 
     public function create()
@@ -37,6 +36,11 @@ class AdminEmpresasController extends Controller
         $admin_empresas->razon_social = $request->razon_social;
         $admin_empresas->id_usuario = 1;
         $admin_empresas->id_ubicacion = 1;
+     $admin_empresas->tipo_empresa = $request->tipo_empresa;
+     $admin_empresas->nit = $request->nit;
+     $admin_empresas->correo = $request->correo;
+ 
+
 
         // Almacenos la imagen en la carpeta publica especifica,
         // Guardamos la fecha de creación del registro
@@ -46,7 +50,6 @@ class AdminEmpresasController extends Controller
         // Hago una redirección a la vista principal con un mensaje
         return redirect('admin-empresas')->with('message', 'Empresa Guardada
         Satisfactoriamente !');
-
     }
 
     /**
@@ -58,7 +61,6 @@ class AdminEmpresasController extends Controller
     public function show($id_empresa)
     {
         $id_empresa = Empresas::all();
-
     }
 
     /**
@@ -89,8 +91,12 @@ class AdminEmpresasController extends Controller
         $admin_empresas->nombre = $request->nombre;
         $admin_empresas->razon_social = $request->razon_social;
         $admin_empresas->id_usuario = 1; // Puedes ajustar esto según tu lógica
-        $admin_empresas->id_ubicacion = 1; // Puedes ajustar esto según tu lógica
+    
+        $admin_empresas->tipo_empresa = $request->tipo_empresa;
 
+        $admin_empresas->nit = $request->nit;
+        $admin_empresas->correo = $request->correo;
+      
         // Guarda los cambios en la base de datos
         $admin_empresas->save();
 
@@ -114,11 +120,10 @@ class AdminEmpresasController extends Controller
         // Elimino el registro de la tabla 'productos'
         Empresas::destroy($id_empresa);
         // Opcional: Si deseas guardar la fecha de eliminación de un registro, debes
-// $productos->deleted_at = (new DateTime)->getTimestamp();
+        // $productos->deleted_at = (new DateTime)->getTimestamp();
 
         // Muestro un mensaje y redirecciono a la vista principal
         Session::flash('message', 'Eliminado Satisfactoriamente !');
         return Redirect::to('admin-empresas');
     }
-
 }
