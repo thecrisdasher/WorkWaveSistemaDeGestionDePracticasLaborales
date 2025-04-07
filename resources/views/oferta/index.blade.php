@@ -38,6 +38,7 @@
                     </form>
                 </td>
             </tr>
+            @include('oferta.form.modal')
             @endforeach
         </tbody>
     </table>

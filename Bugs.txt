@@ -2,9 +2,11 @@
 
 ### 🚨 Problemas Pendientes:
 1. ❌ **El apartado para postular no está funcionando.**
-2. ❌ **El login no funciona correctamente (problema con el cifrado de contraseñas).**
+2. ❌ **El CRUD DE USUARIOS NO PERMITE AGREGAR USUARIOS.**
+3. ❌ **El CRUD DE EMPRESA NO DEJA ACTUALIZAR NI AGREGAR (Esto es por que aun no se han configurado los nevos campos).**
 
----
+
+--------
 
 ### ✅ Mejoras Implementadas:
 1. 🏢 **Agregar el NIT de la empresa o información más relevante de la empresa.** (✔️ OK)
@@ -18,3 +20,13 @@
 9. 🧹 **El filtro de usuarios por nombre ahora funciona correctamente, y la tabla de información está mejor organizada.** (✔️ OK)
 10. 📱 **El CRUD ahora se adapta correctamente a pantallas pequeñas.** (✔️ OK)
 11. 💡 **Agregar apartado de skills o habilidades en el rol de usuario-estudiante.** ( Pendiente )
+
+
+----
+
+CRud good
+
+1. Crud ofertas (ok)
+2. Crud ofertas (ok)
+3. Crud ofertas (ok)
+4. Crud ofertas (ok)

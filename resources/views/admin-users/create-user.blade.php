@@ -4,7 +4,7 @@
 <section class="content container-fluid" style="width: 100%; height: 1000px;">
     <div class="">
         <div class="col-md-12">
-            <div class="card card-default" style="box-shadow: 0 0 0rem 0 rgba(136, 152, 170, 0.15) ">
+            <div class="card card-default" style="padding: 20px; box-shadow: 0 0 0rem 0 rgba(136, 152, 170, 0.15) ">
                 <div class="card-header">
                     <span class="card-title">{{ __('Agregar') }} usuario</span>
                 </div>
