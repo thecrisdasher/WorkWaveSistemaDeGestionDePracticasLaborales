@@ -94,6 +94,7 @@ Route::get('/oferta/{id_oferta}', [OfertaController::class, 'show'])->name('ofer
 Route::get('/QuienesSomos', [LoginController::class, 'quienSomos'])->middleware('guest')->name('QuienesSomos');
 Route::get('/principal', [estudiantePrincipalController::class, 'principal'])->name('principal');
 Route::get('/estadisticas', [App\Http\Controllers\PostulacionesController::class, 'statistics'])->name('postulaciones.statistics');
+Route::get('/buscar-ofertas', [EstudiantePrincipalController::class, 'buscarOfertas'])->name('buscar.ofertas');
 
 
 //middleware

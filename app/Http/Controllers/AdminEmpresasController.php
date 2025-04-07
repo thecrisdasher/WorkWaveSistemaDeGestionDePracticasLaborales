@@ -11,6 +11,7 @@ class AdminEmpresasController extends Controller
 {
     public function index()
     {
+        
         $admin_empresas = Empresas::paginate(4);
         return view('admin-empresas.admin-empresa', compact('admin_empresas'));
     }

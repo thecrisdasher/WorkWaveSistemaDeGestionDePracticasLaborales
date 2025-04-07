@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-
 <!-- Overlay de carga -->
 <div id="loading-overlay" style="
     display: none;
@@ -30,32 +29,46 @@
 </div>
 
 <!-- Buscador -->
+<div class="input-group" style="position:relative; width: 70%; margin:50px auto;">
+    <input id="search-input" style="border-radius: 20px; height: 70px;" type="text" class="form-control buscador" placeholder="Busca tus prácticas ideales aquí...">
+    <button id="search-button" class="btn btn-primary" style="margin-left: 10px; height: 70px; border-radius: 15px;">Ofertas Relacionadas</button>
+</div>
 
-
-<!--form-control es el buscador-->
-<div class="input-group rounded-circle" style="position:relative; width: 70%; margin:50px auto; background-color: red;">
-
-    <input style="border-radius: 20px; height: 70px;" type="text" class="form-control buscador" placeholder="Busca tus practicas ideales aquí...">
-
-    <ul id="showlist" tabindex="1" class="list-group" style="
-    top: 100%;
+<!-- Overlay de "Buscando..." -->
+<div id="search-overlay" style="
     display: none;
-    cursor: pointer;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    gap: 10px;
-    margin: 20px auto;
-    padding: 20px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Buscando...</span>
+    </div>
+    <p style="margin-top: 10px; font-size: 18px; color: #000;">Buscando ofertas relacionadas...</p>
+</div>
+
+<!-- Contenedor para mostrar las ofertas relacionadas -->
+<div id="related-offers" class="list-group" style="
+    display: none;
+    margin-top: 20px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 15px;
-    position: absolute;
     background: #ffffff78;
     backdrop-filter: blur(5px);
-    z-index: 99;"></ul>
+    z-index: 99;">
 </div>
-</div>
 
-
-
-
+<!-- Sección de Ofertas -->
 <section>
     <div class="container" style="margin-bottom: 30px; top: 80px; position: relative; display: flex; justify-content: center; flex-wrap: wrap; width: 100%;">
         <form method="GET" action="{{ route('principal') }}" id="filter-form">
@@ -71,38 +84,35 @@
                 </div>
 
                 <div class="col-md-4">
-    <label for="cargo" class="form-label">Empresa</label>
-    <select name="cargo" class="form-select" id="cargo" style="width: 250px;">
-        <option value="">Selecciona una empresa</option>
-        <option value="all" {{ request('cargo') == 'all' ? 'selected' : '' }}>Seleccionar todas</option>
-        @foreach ($empresas as $empresa)
-        <option value="{{ $empresa->nombre }}" {{ request('cargo') == $empresa->nombre ? 'selected' : '' }}>
-            {{ $empresa->nombre }}
-        </option>
-        @endforeach
-    </select>
-</div>
-
+                    <label for="cargo" class="form-label">Empresa</label>
+                    <select name="cargo" class="form-select" id="cargo" style="width: 250px;">
+                        <option value="">Selecciona una empresa</option>
+                        <option value="all" {{ request('cargo') == 'all' ? 'selected' : '' }}>Seleccionar todas</option>
+                        @foreach ($empresas as $empresa)
+                        <option value="{{ $empresa->nombre }}" {{ request('cargo') == $empresa->nombre ? 'selected' : '' }}>
+                            {{ $empresa->nombre }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
             <button type="submit" class="btn btn-primary mt-3">Aplicar Filtros</button>
             <button type="button" class="btn btn-secondary mt-3" id="reset-filters">
-            <a style="color: white;" href="{{ route('page', ['page' => 'principal']) }}">Limpiar Filtros</a></button>
+                <a style="color: white;" href="{{ route('page', ['page' => 'principal']) }}">Limpiar Filtros</a>
+            </button>
         </form>
     </div>
 
     <!-- Ofertas en dos columnas -->
     <h2 style="text-align: center; font-size: 24px; color: #000; margin: 120px 0;">Ofertas disponibles</h2>
-    <div class="container" style="    width: 80%;
-    display: flex
-;
-    justify-content: center;">
+    <div class="container" style="width: 80%; display: flex; justify-content: center;">
         <div class="row">
             @foreach($ofertas as $oferta)
             <div class="col-md-6 mb-4">
                 <div class="card" style="border: none; padding: 15px; align-items: flex-start;">
                     <div class="card-body">
                         <h5 class="card-title">{{ $oferta->nombre_oferta }}</h5>
-                        <p style="height: 100px; overflow: hidden;">{{ $oferta->descripcion}}.....</p>
+                        <p style="height: 100px; overflow: hidden;">{{ $oferta->descripcion }}.....</p>
                         <a href="{{ route('oferta.show', $oferta->id_oferta) }}" class="btn btn-primary">Ver Oferta</a>
                     </div>
                 </div>
@@ -112,10 +122,10 @@
     </div>
 </section>
 
-<!-- Slider de Ofertas -->
+<!-- Slider de Empresas -->
 <h2 style="text-align: center; font-size: 24px; color: #000; margin: 120px 0;">Empresas</h2>
 <div class="container-fluid mt-5" style="width: 80%; display: flex; justify-content: center; flex-wrap: wrap;">
-    <div class="offer-slider" style="width: 100%; height: 250px; ">
+    <div class="offer-slider" style="width: 100%; height: 250px;">
         @foreach($empresas as $empresa)
         <div class="card" style="border: none; margin: 10px;">
             <div class="card-body" style="height: 150px;">
@@ -127,8 +137,11 @@
     </div>
 </div>
 
-
-
+<!-- Gráfico de Ofertas -->
+<h2 style="text-align: center; font-size: 24px; color: #000; margin: 120px 0;">Fecha nuevas empresas</h2>
+<div class="container" style="width: 80%; margin-bottom: 50px;">
+    <canvas id="ofertasChart"></canvas>
+</div>
 
 @endsection
 
@@ -147,6 +160,7 @@
 @push('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     $(document).ready(function() {
         $('.offer-slider').slick({
@@ -173,6 +187,58 @@
         // Mostrar overlay de carga cuando se aplica un filtro
         $('#filter-form').on('submit', function() {
             $('#loading-overlay').css('display', 'flex');
+        });
+
+        // Gráfico de Empresas por Fecha de Creación
+        const ctx = document.getElementById('ofertasChart').getContext('2d');
+        const empresasChart = new Chart(ctx, {
+            type: 'line', // Cambiado a línea para mostrar tendencias
+            data: {
+                labels: @json($empresasPorFecha->pluck('fecha')), // Fechas de creación
+                datasets: [{
+                    label: 'Cantidad de Empresas',
+                    data: @json($empresasPorFecha->pluck('total')), // Cantidad de empresas por fecha
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Cantidad de Empresas'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Fecha de Creación'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Evento para buscar ofertas relacionadas
+        $('#search-button').on('click', function(e) {
+            e.preventDefault();
+
+            const query = $('#search-input').val(); // Obtener el texto ingresado
+            if (!query) {
+                alert('Por favor, ingresa un término de búsqueda.');
+                return;
+            }
+
+            // Mostrar el overlay de "Buscando..."
+            $('#search-overlay').css('display', 'flex');
+
+            // Redirigir al nuevo apartado con el término de búsqueda
+            window.location.href = "{{ route('buscar.ofertas') }}?query=" + encodeURIComponent(query);
         });
     });
 </script>

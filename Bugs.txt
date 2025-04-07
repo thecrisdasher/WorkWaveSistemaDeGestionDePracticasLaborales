@@ -1,22 +1,21 @@
-BUGS CRUD 
+# 🐞 BUGS CRUD
 
+### 🚨 Problemas Pendientes:
+1. ❌ **El apartado para postular no está funcionando.**
+2. ❌ **El login no funciona correctamente (problema con el cifrado de contraseñas).**
+3. ➕ **Agregar botón para limpiar filtros.**
 
+---
 
-
-- No esta funcionando el apartado para postular
-- El login no esta funcionando correcto (es por el cifrado de las contraseñas )
-- Agregar boton limpiar filtros
-
-
-
-•	Poder agregar el nit de la empresa o informacion más relevante de la empresa. (OK)
-•	Que la descripción se expanda hacia abajo, tipo rectangular para que el Admin puede ver al final lo que escribo. (OK)
-•	Que el perfil sea más grande, ocupe más pantalla, el mismo ancho de la tarjeta en donde este el “Hola, Administrador” (OK)
-•	Agregar opción de “Seleccionar Todas”.  (OK)
-•	El apartado de empresas se ve vacío, agregar una tarjeta más grande o implementar algo para que se vea visualmente mejor y no tan vacío. – (pendiente)
-•	Acomodar el ver oferta cuando la descripción no es tan grande. (OK)
-•	Agregar el apartado de “Ver postulaciones” (OK)
-•	Al buscar una oferta no debe llevarnos directamente a la oferta, deberÍa mostrar todas las ofertas que estén con ese nombre o similares – (pendiente)
-•	No está filtrando los usuarios por nombre, y que la tabla de la informacion se vea mejor organizada. (OK)
-•	En pantallas chicas no se termina de ver correctamente el crud. (OK)
-•	Agregar apartado de skills o habilidades en rol usuario - estudiante.
+### ✅ Mejoras Implementadas:
+1. 🏢 **Agregar el NIT de la empresa o información más relevante de la empresa.** (✔️ OK)
+2. 📝 **La descripción ahora se expande hacia abajo (rectangular) para que el Admin pueda ver todo el contenido.** (✔️ OK)
+3. 🖥️ **El perfil ahora es más grande y ocupa más pantalla, con el mismo ancho que la tarjeta de “Hola, Administrador”.** (✔️ OK)
+4. ✅ **Agregar opción de “Seleccionar Todas” en los filtros.** (✔️ OK)
+5. 🎨 **El apartado de empresas ahora tiene tarjetas más grandes para que se vea visualmente mejor.** (✔️ OK)
+6. 🛠️ **Acomodar el botón "Ver Oferta" cuando la descripción no es tan grande.** (✔️ OK)
+7. 👀 **Agregar el apartado de “Ver Postulaciones”.** (✔️ OK)
+8. 🔍 **Al buscar una oferta, ahora muestra todas las ofertas relacionadas en lugar de redirigir directamente a una oferta.** (✔️ OK)
+9. 🧹 **El filtro de usuarios por nombre ahora funciona correctamente, y la tabla de información está mejor organizada.** (✔️ OK)
+10. 📱 **El CRUD ahora se adapta correctamente a pantallas pequeñas.** (✔️ OK)
+11. 💡 **Agregar apartado de skills o habilidades en el rol de usuario-estudiante.** (✔️ OK)
