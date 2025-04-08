@@ -35,40 +35,26 @@ class UsersAdminController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            // Validar los datos del formulario
-            $validatedData = $request->validate([
-                'username' => 'required|max:255|unique:users',
-                'id_rol' => 'required|max:255',
-                'firstname' => 'required|max:100',
-                'lastname' => 'required|max:100',
-                'email' => 'required|email|max:255|unique:users',
-                'password' => 'required|min:8|confirmed', // Validación para la contraseña
-                'city' => 'nullable|max:100',
-                'postal' => 'nullable|max:20',
-                'about' => 'nullable|max:255',
-            ]);
+        // Crear un nuevo usuario
+        $users_admin = new User;
+        $users_admin->username = $request->username;
+        $users_admin->id_rol = $request->id_rol;
+        $users_admin->firstname = $request->firstname;
+        $users_admin->lastname = $request->lastname;
+        $users_admin->email = $request->email;
+        $users_admin->city = $request->city;
+        $users_admin->postal = 1;
+        $users_admin->about = $request->about;
 
-            // Crear un nuevo usuario
-            $users_admin = new User;
-            $users_admin->username = $validatedData['username'];
-            $users_admin->id_rol = $validatedData['id_rol'];
-            $users_admin->firstname = $validatedData['firstname'];
-            $users_admin->lastname = $validatedData['lastname'];
-            $users_admin->email = $validatedData['email'];
-            $users_admin->password = $validatedData['password']; // El mutador en el modelo se encargará de cifrarla
-            $users_admin->city = $validatedData['city'];
-            $users_admin->postal = $validatedData['postal'];
-            $users_admin->about = $validatedData['about'];
+        // Asignar valores por defecto si no se proporcionan
+        $users_admin->carrera = $request->carrera ?? 'No estudiante';
+        $users_admin->facultad = $request->facultad ?? 'No estudiante';
 
-            // Guardar el usuario en la base de datos
-            $users_admin->save();
-            // Redirigir con un mensaje de éxito
-            return redirect('admin-users')->with('message', 'Usuario guardado satisfactoriamente!');
-        } catch (\Exception $e) {
-            // Captura el error y redirige con el mensaje
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
+        // Guardar el usuario
+        $users_admin->save();
+
+        // Redirigir con un mensaje de éxito
+        return redirect('admin-empresas')->with('message', 'Usuario guardado satisfactoriamente!');
     }
 
     public function update(Request $request, $id)
@@ -80,17 +66,22 @@ class UsersAdminController extends Controller
         $users_admin->lastname = $request->lastname;
         $users_admin->email = $request->email;
         $users_admin->city = $request->city;
-        $users_admin->postal = $request->postal;
+        $users_admin->postal = 1;
         $users_admin->about = $request->about;
 
+        // Asignar valores por defecto si no se proporcionan
+        $users_admin->carrera = $request->carrera ?? 'No estudiante';
+        $users_admin->facultad = $request->facultad ?? 'No estudiante';
+
         if ($request->filled('password')) {
-            $users_admin->password = $request->password; // El mutador en el modelo se encargará de cifrarla
+            $users_admin->password = $request->password; // Actualiza la contraseña solo si se proporciona
         }
 
-        // Actualizo los datos en la tabla 'usuarios'
+        // Guardar los cambios
         $users_admin->save();
-        // Muestro un mensaje y redirecciono a la vista principal
-        Session::flash('message', 'Editado Satisfactoriamente !');
+
+        // Redirigir con un mensaje de éxito
+        Session::flash('message', 'Editado satisfactoriamente!');
         return Redirect::to('admin-users');
     }
 

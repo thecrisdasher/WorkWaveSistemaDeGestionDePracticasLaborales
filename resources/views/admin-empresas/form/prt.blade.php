@@ -18,7 +18,7 @@
                 <div class="mb-3">
                     <label for="razon_social" class="negrita">Razón Social:</label>
                     <div>
-                        <textarea class="form-control" style="height: 130px; resize: none;"
+                        <textarea class="form-control" style="height: 130px; resize: none; overflow-y: hidden;"
                             placeholder="{{ isset($admin_empresas) ? $admin_empresas->razon_social : 'Empresa dedicada a...' }}"
                             required="required"
                             name="razon_social"
@@ -29,84 +29,75 @@
                         <small id="word-limit-message" class="text-danger" style="display: none;">Has excedido el límite de 200 palabras.</small>
                     </div>
                 </div>
+
                 <div class="mb-3">
-                    <label for="razon_social" class="negrita">Tipo empresa:</label>
+                    <label for="tipo_empresa" class="negrita">Tipo de Empresa:</label>
                     <div>
-                        <input class="form-control"
-                            placeholder="{{ isset($admin_empresas) ? $admin_empresas->tipo_empresa : 'Empresa dedicada a...' }}"
-                            required="required"
-                            name="tipo_empresa"
-                            type="text"
-                            id="tipo_empresa"
-                            value="{{ old('Razon social', isset($admin_empresas) ? $admin_empresas->tipo_empresa : '') }}">
+                        <select class="form-control" name="tipo_empresa" id="tipo_empresa" required="required">
+                            <option value="" disabled {{ !isset($admin_empresas) ? 'selected' : '' }}>Seleccione el tipo de empresa</option>
+                            <option value="Tecnología" {{ isset($admin_empresas) && $admin_empresas->tipo_empresa == 'Tecnología' ? 'selected' : '' }}>Tecnología</option>
+                            <option value="Salud" {{ isset($admin_empresas) && $admin_empresas->tipo_empresa == 'Salud' ? 'selected' : '' }}>Salud</option>
+                            <option value="Educación" {{ isset($admin_empresas) && $admin_empresas->tipo_empresa == 'Educación' ? 'selected' : '' }}>Educación</option>
+                            <option value="Finanzas" {{ isset($admin_empresas) && $admin_empresas->tipo_empresa == 'Finanzas' ? 'selected' : '' }}>Finanzas</option>
+                            <option value="Manufactura" {{ isset($admin_empresas) && $admin_empresas->tipo_empresa == 'Manufactura' ? 'selected' : '' }}>Manufactura</option>
+                            <option value="Otro" {{ isset($admin_empresas) && $admin_empresas->tipo_empresa == 'Otro' ? 'selected' : '' }}>Otro</option>
+                        </select>
                     </div>
                 </div>
+
                 <div class="mb-3">
-                    <label for="razon_social" class="negrita">Nit:</label>
+                    <label for="nit" class="negrita">Nit:</label>
                     <div>
                         <input class="form-control"
-                            placeholder="{{ isset($admin_empresas) ? $admin_empresas->nit : 'Empresa dedicada a...' }}"
+                            placeholder="{{ isset($admin_empresas) ? $admin_empresas->nit : '123456789' }}"
                             required="required"
                             name="nit"
                             type="text"
                             id="nit"
-                            value="{{ old('Razon social', isset($admin_empresas) ? $admin_empresas->nit : '') }}">
+                            value="{{ old('nit', isset($admin_empresas) ? $admin_empresas->nit : '') }}">
                     </div>
                 </div>
+
                 <div class="mb-3">
-                    <label for="razon_social" class="negrita">Correo:</label>
+                    <label for="correo" class="negrita">Correo:</label>
                     <div>
                         <input class="form-control"
-                            placeholder="{{ isset($admin_empresas) ? $admin_empresas->correo : 'Empresa dedicada a...' }}"
+                            placeholder="{{ isset($admin_empresas) ? $admin_empresas->correo : 'empresa@example.com' }}"
                             required="required"
                             name="correo"
                             type="text"
                             id="correo"
-                            value="{{ old('Razon social', isset($admin_empresas) ? $admin_empresas->correo : '') }}">
+                            value="{{ old('correo', isset($admin_empresas) ? $admin_empresas->correo : '') }}">
                     </div>
                 </div>
-
-
             </div>
     </div>
 
-
     <!-- Botón dinámico -->
-    <button type=" submit" class="btn btn-info">
+    <button type="submit" class="btn btn-info">
         {{ isset($admin_empresas) ? 'Actualizar' : 'Agregar' }}
     </button>
-    <a href="/admin-empresas" class="btn btn-warning">Cancelar</a>
-
+    <a href="/admin-users" class="btn btn-warning">Cancelar</a>
 </div>
+
 <script>
-            // Función para ajustar dinámicamente el tamaño del textarea
-            function autoResize(textarea) {
-                textarea.style.height = 'auto'; // Reseteamos la altura
-                textarea.style.height = (textarea.scrollHeight) + 'px'; // Establecemos la nueva altura
-            }
+    // Función para ajustar dinámicamente el tamaño del textarea
+    function autoResize(textarea) {
+        textarea.style.height = 'auto'; // Reseteamos la altura
+        textarea.style.height = (textarea.scrollHeight) + 'px'; // Establecemos la nueva altura
+    }
 
-            // Función para verificar el límite de palabras
-            function checkWordLimit(textarea, limit) {
-                const wordLimitMessage = document.getElementById('word-limit-message');
-                const words = textarea.value.trim().split(/\s+/); // Dividimos el texto en palabras
-                if (words.length > limit) {
-                    wordLimitMessage.style.display = 'block'; // Mostramos el mensaje de error
-                } else {
-                    wordLimitMessage.style.display = 'none'; // Ocultamos el mensaje de error
-                }
-            }
-
-            // Función para verificar el límite de caracteres
-            function checkCharacterLimit(textarea, limit) {
-                const charLimitMessage = document.getElementById('char-limit-message');
-                const currentLength = textarea.value.length; // Longitud actual del texto
-                if (currentLength > limit) {
-                    charLimitMessage.style.display = 'block'; // Mostramos el mensaje de error
-                } else {
-                    charLimitMessage.style.display = 'none'; // Ocultamos el mensaje de error
-                }
-            }
-        </script>
+    // Función para verificar el límite de caracteres
+    function checkCharacterLimit(textarea, limit) {
+        const charLimitMessage = document.getElementById('char-limit-message');
+        const currentLength = textarea.value.length; // Longitud actual del texto
+        if (currentLength > limit) {
+            charLimitMessage.style.display = 'block'; // Mostramos el mensaje de error
+        } else {
+            charLimitMessage.style.display = 'none'; // Ocultamos el mensaje de error
+        }
+    }
+</script>
 </section>
 </div>
 </div>

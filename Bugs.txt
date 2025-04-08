@@ -2,8 +2,7 @@
 
 ### 🚨 Problemas Pendientes:
 1. ❌ **El apartado para postular no está funcionando.**
-2. ❌ **El CRUD DE USUARIOS NO PERMITE AGREGAR USUARIOS.**
-3. ❌ **El CRUD DE EMPRESA NO DEJA ACTUALIZAR NI AGREGAR (Esto es por que aun no se han configurado los nevos campos).**
+2. ❌ **El CRUD DE EMPRESA NO DEJA ACTUALIZAR NI AGREGAR (Esto es por que aun no se han configurado los nevos campos).**
 
 
 --------

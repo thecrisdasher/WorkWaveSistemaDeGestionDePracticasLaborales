@@ -31,7 +31,7 @@
                 <div class="mb-3">
                     <label for="descripcion" class="negrita">Descripción:</label>
                     <div>
-                        <textarea class="form-control" style="height: 130px; resize: none;"
+                        <textarea class="form-control" style="height: 130px; resize: none; overflow-y: hidden;"
                             placeholder="{{ isset($oferta) ? $oferta->descripcion : 'Descripción de la empresa' }}"
                             name="descripcion"
                             type="text"

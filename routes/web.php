@@ -42,10 +42,15 @@ Route::get('/buscar-ofertas', [EstudiantePrincipalController::class, 'buscarOfer
 Route::resource('/oferta', 'App\Http\Controllers\OfertaController')->middleware(['auth']);
 Route::get('/oferta/detalle/{id}', [OfertaController::class, 'detalleOferta']);
 Route::post('/oferta/postularme/{id}', [OfertaController::class, 'postularme'])->name('oferta.postularme');
-Route::post('/profile/update-photo', [UserProfileController::class, 'updatePhoto'])->name('profile.update-photo');
 Route::get('/oferta/{id_oferta}', [OfertaController::class, 'show'])->name('ofertas.show');
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest')->name('register.perform');
+
+
+// Rutas compartidas
+Route::post('/profile/update-photo', [UserProfileController::class, 'updatePhoto'])->name('profile.update-photo')->middleware(['auth', AuthRolStudent::class, AuthRolAdmin::class]);
+Route::get('/busqueda', 'App\Http\Controllers\OfertaController@busqueda')->middleware(['auth', AuthRolStudent::class, AuthRolAdmin::class]);
+
 
 // Rutas admin
 Route::resource('/admin-empresas', 'App\Http\Controllers\AdminEmpresasController')->middleware(['auth', AuthRolAdmin::class]);
@@ -63,7 +68,7 @@ Route::get('/QuienesSomos', [LoginController::class, 'quienSomos'])->middleware(
 
 
 // Rutas estudiante
-Route::get('/busqueda', 'App\Http\Controllers\OfertaController@busqueda')->middleware(['auth', AuthRolStudent::class, AuthRolAdmin::class]);
+
 Route::resource('/principal', 'App\Http\Controllers\estudiantePrincipalController')->middleware(['auth', AuthRolStudent::class, AuthRolAdmin::class]);
 Route::get('/principal', [estudiantePrincipalController::class, 'principal'])->name('principal');
 Route::get('/estadisticas', [App\Http\Controllers\PostulacionesController::class, 'statistics'])->name('postulaciones.statistics');

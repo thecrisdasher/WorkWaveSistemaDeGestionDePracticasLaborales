@@ -11,12 +11,20 @@ class Empresas extends Model
 {
     use HasFactory;
 
-    // Instancio la tabla 'productos'
+    // Instancio la tabla 'empresas'
     protected $table = 'empresas';
 
-    // Declaro los campos que usaré de la tabla 'productos'
+    // Declaro los campos que usaré de la tabla 'empresas'
     protected $primaryKey = 'id_empresa';
-    protected $fillable = ['nombre', 'razon_social'];
+    protected $fillable = [
+        'nombre',
+        'razon_social',
+        'tipo_empresa',
+        'nit',
+        'correo',
+        'id_ubicacion',
+        'id_usuario',
+    ];
 
     public function Ofertas(): HasMany
     {

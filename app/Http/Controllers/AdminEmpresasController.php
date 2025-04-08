@@ -11,7 +11,6 @@ class AdminEmpresasController extends Controller
 {
     public function index()
     {
-        
         $admin_empresas = Empresas::paginate(4);
         return view('admin-empresas.admin-empresa', compact('admin_empresas'));
     }
@@ -30,23 +29,23 @@ class AdminEmpresasController extends Controller
      */
     public function store(Request $request)
     {
-        // Instancio al modelo Productos que hace llamado a la tabla 'productos'
+        // Instancio al modelo Empresas que hace llamado a la tabla 'Empresas'
         $admin_empresas = new Empresas;
         // Recibo todos los datos del formulario de la vista
         $admin_empresas->nombre = $request->nombre;
         $admin_empresas->razon_social = $request->razon_social;
         $admin_empresas->id_usuario = 1;
         $admin_empresas->id_ubicacion = 1;
-     $admin_empresas->tipo_empresa = $request->tipo_empresa;
-     $admin_empresas->nit = $request->nit;
-     $admin_empresas->correo = $request->correo;
- 
+        $admin_empresas->tipo_empresa = $request->tipo_empresa;
+        $admin_empresas->nit = $request->nit;
+        $admin_empresas->correo = $request->correo;
+
 
 
         // Almacenos la imagen en la carpeta publica especifica,
         // Guardamos la fecha de creación del registro
         //$oferta->created_at = (new DateTime)->getTimestamp();
-        // Inserto todos los datos en mi tabla 'productos'
+        // Inserto todos los datos en mi tabla 'Empresas'
         $admin_empresas->save();
         // Hago una redirección a la vista principal con un mensaje
         return redirect('admin-empresas')->with('message', 'Empresa Guardada
@@ -75,7 +74,6 @@ class AdminEmpresasController extends Controller
         $admin_empresas = Empresas::find($id_empresa);
         return view('admin-empresas.edit', compact('admin_empresas'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -88,21 +86,26 @@ class AdminEmpresasController extends Controller
         // Encuentra el registro existente por su ID
         $admin_empresas = Empresas::findOrFail($id_empresa);
 
-        // Actualiza los campos con los datos del formulario
-        $admin_empresas->nombre = $request->nombre;
-        $admin_empresas->razon_social = $request->razon_social;
-        $admin_empresas->id_usuario = 1; // Puedes ajustar esto según tu lógica
-    
-        $admin_empresas->tipo_empresa = $request->tipo_empresa;
+        // Valida los datos del formulario
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'razon_social' => 'required|string|max:255',
+            'tipo_empresa' => 'required|string|max:255',
+            'nit' => 'required|string|max:20',
+            'correo' => 'required|email|max:255',
+        ]);
 
-        $admin_empresas->nit = $request->nit;
-        $admin_empresas->correo = $request->correo;
-      
-        // Guarda los cambios en la base de datos
-        $admin_empresas->save();
+        // Actualiza los campos con los datos del formulario
+        $admin_empresas->update([
+            'nombre' => $request->nombre,
+            'razon_social' => $request->razon_social,
+            'tipo_empresa' => $request->tipo_empresa,
+            'nit' => $request->nit,
+            'correo' => $request->correo,
+        ]);
 
         // Redirige con un mensaje de éxito
-        return redirect('admin-empresas')->with('message', 'Empresa actualizada satisfactoriamente!');
+        return redirect()->route('admin-empresas.index')->with('message', 'Empresa actualizada satisfactoriamente!');
     }
 
     /**
@@ -118,10 +121,10 @@ class AdminEmpresasController extends Controller
         // Elimino la imagen de la carpeta 'uploads'
 
 
-        // Elimino el registro de la tabla 'productos'
+        // Elimino el registro de la tabla 'Empresas'
         Empresas::destroy($id_empresa);
         // Opcional: Si deseas guardar la fecha de eliminación de un registro, debes
-        // $productos->deleted_at = (new DateTime)->getTimestamp();
+        // $Empresas->deleted_at = (new DateTime)->getTimestamp();
 
         // Muestro un mensaje y redirecciono a la vista principal
         Session::flash('message', 'Eliminado Satisfactoriamente !');

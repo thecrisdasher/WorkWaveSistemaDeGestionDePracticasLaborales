@@ -15,26 +15,24 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="id_rol" class="negrita">ID rol:</label>
+                    <label for="id_rol" class="negrita">Rol:</label>
                     <div>
-                        <input class="form-control"
-                            placeholder="{{ isset($users_admin) ?  $users_admin->id_rol  : '1, 2, 3' }}"
-                            required="required"
-                            name="id_rol"
-                            type="text"
-                            id="id_rol"
-                            value="{{ old('id rol', isset($users_admin) ?  $users_admin->id_rol  : '') }}">
+                        <select class="form-control" name="id_rol" id="id_rol" required="required">
+                            <option value="1" {{ isset($users_admin) && $users_admin->id_rol == 1 ? 'selected' : '' }}>Administrador</option>
+                            <option value="2" {{ isset($users_admin) && $users_admin->id_rol == 2 ? 'selected' : '' }}>Estudiante</option>
+                            <option value="3" {{ isset($users_admin) && $users_admin->id_rol == 3 ? 'selected' : '' }}>Empresa</option>
+                        </select>
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="nombre" class="negrita">Nombres:</label>
+                    <label for="firstname" class="negrita">Nombres:</label>
                     <div>
                         <input class="form-control"
                             placeholder="{{ isset($users_admin) ?  $users_admin->firstname  : 'Camilo' }}"
                             required="required"
                             name="firstname"
                             type="text"
-                            id="nombre"
+                            id="firstname"
                             value="{{ old('nombres', isset($users_admin) ?  $users_admin->firstname  : '') }}">
                     </div>
                 </div>
@@ -98,6 +96,28 @@
                             value="{{ old('Sobre mi', isset($users_admin) ?  $users_admin->about  : '') }}">
                     </div>
                 </div>
+                <div class="mb-3" id="facultad-field" style="display: none;">
+                    <label for="facultad" class="negrita">Facultad:</label>
+                    <div>
+                        <input class="form-control"
+                            placeholder="{{ isset($users_admin) ?  $users_admin->facultad  : '' }}"
+                            name="facultad"
+                            type="text"
+                            id="facultad"
+                            value="{{ old('facultad', isset($users_admin) ?  $users_admin->facultad  : '') }}">
+                    </div>
+                </div>
+                <div class="mb-3" id="carrera-field" style="display: none;">
+                    <label for="carrera" class="negrita">Carrera:</label>
+                    <div>
+                        <input class="form-control"
+                            placeholder="{{ isset($users_admin) ?  $users_admin->carrera  : '' }}"
+                            name="carrera"
+                            type="text"
+                            id="carrera"
+                            value="{{ old('carrera', isset($users_admin) ?  $users_admin->carrera  : '') }}">
+                    </div>
+                </div>
 
                 <!-- Campos para la contraseña -->
                 <div class="mb-3">
@@ -132,3 +152,27 @@
         </section>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const idRolSelect = document.getElementById('id_rol');
+        const facultadField = document.getElementById('facultad-field');
+        const carreraField = document.getElementById('carrera-field');
+
+        function toggleFields() {
+            if (idRolSelect.value === '2') { // Si el rol es "Estudiante"
+                facultadField.style.display = 'block';
+                carreraField.style.display = 'block';
+            } else {
+                facultadField.style.display = 'none';
+                carreraField.style.display = 'none';
+            }
+        }
+
+        // Inicializar los campos al cargar la página
+        toggleFields();
+
+        // Escuchar cambios en el select de roles
+        idRolSelect.addEventListener('change', toggleFields);
+    });
+</script>
