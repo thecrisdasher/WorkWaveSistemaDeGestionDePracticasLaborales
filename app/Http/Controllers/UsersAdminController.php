@@ -35,26 +35,39 @@ class UsersAdminController extends Controller
      */
     public function store(Request $request)
     {
-        // Crear un nuevo usuario
-        $users_admin = new User;
-        $users_admin->username = $request->username;
-        $users_admin->id_rol = $request->id_rol;
-        $users_admin->firstname = $request->firstname;
-        $users_admin->lastname = $request->lastname;
-        $users_admin->email = $request->email;
-        $users_admin->city = $request->city;
-        $users_admin->postal = 1;
-        $users_admin->about = $request->about;
+        // Validar los datos de entrada
+        $validatedData = $request->validate([
+            'username' => 'required|string|max:255|unique:users,username', // Validación para evitar duplicados
+            'id_rol' => 'required|exists:roles,id_rol',
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+            'city' => 'nullable|string|max:255',
+            'about' => 'nullable|string|max:500',
+            'carrera' => 'nullable|string|max:255',
+            'facultad' => 'nullable|string|max:255',
+        ]);
 
-        // Asignar valores por defecto si no se proporcionan
-        $users_admin->carrera = $request->carrera ?? 'No estudiante';
-        $users_admin->facultad = $request->facultad ?? 'No estudiante';
+        // Crear un nuevo usuario con los datos validados
+        $users_admin = new User;
+        $users_admin->username = $validatedData['username'];
+        $users_admin->id_rol = $validatedData['id_rol'];
+        $users_admin->firstname = $validatedData['firstname'];
+        $users_admin->lastname = $validatedData['lastname'];
+        $users_admin->email = $validatedData['email'];
+        $users_admin->city = $validatedData['city'] ?? null;
+        $users_admin->postal = 1; // Valor predeterminado
+        $users_admin->about = $validatedData['about'] ?? null;
+        $users_admin->carrera = $validatedData['carrera'] ?? 'No estudiante';
+        $users_admin->facultad = $validatedData['facultad'] ?? 'No estudiante';
+        $users_admin->password = bcrypt($validatedData['password']); // Encriptar la contraseña
 
         // Guardar el usuario
         $users_admin->save();
 
         // Redirigir con un mensaje de éxito
-        return redirect('admin-empresas')->with('message', 'Usuario guardado satisfactoriamente!');
+        return redirect('admin-users')->with('message', 'Usuario guardado satisfactoriamente!');
     }
 
     public function update(Request $request, $id)

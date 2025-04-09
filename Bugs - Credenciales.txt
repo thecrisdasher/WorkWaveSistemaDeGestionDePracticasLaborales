@@ -1,3 +1,26 @@
+# ⚙ CREDENCIALES PARA PRUEBAS
+
+-----------------
+
+
+1: 
+
+Rol: Administrador
+Email: admin@argon.com
+Password: secret
+
+**************************
+
+2:
+
+Rol: Estudiante
+Email: camilosol@gmail.com
+Password: camilosol
+
+
+****************************
+
+
 # 🐞 BUGS CRUD
 
 ### 🚨 Problemas Pendientes:

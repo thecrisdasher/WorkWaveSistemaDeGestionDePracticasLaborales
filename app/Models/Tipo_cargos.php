@@ -10,23 +10,10 @@ class Tipo_cargos extends Model
 {
     use HasFactory;
 
-    static $rules = [
-		'name' => 'required|string',
-		'email' => 'required|string',
-    ];
-    // Instancio la tabla 'productos'
-    protected $table = 'tipo_cargos';
+    protected $table = 'tipo_contratos'; // Nombre de la tabla en la base de datos
+    protected $primaryKey = 'id_tipo_contrato'; // Clave primaria
+    protected $fillable = ['tipo']; // Campos que se pueden llenar
 
-    // Declaro los campos que usaré de la tabla 'productos'
-    protected $primaryKey = 'id_cargo';
-    protected $fillable = ['cargo'];
-
-
-    /**
-     * Get the ofertas for the blog post.
-     */
-    public function Ofertas(): HasMany
-    {
-        return $this->hasMany(Ofertas::class);
-    }
+    public $timestamps = false; // Desactiva las marcas de tiempo
 }
+

@@ -1,17 +1,20 @@
 <div class="row mt-0 mx-4">
     <div class="col-md-12">
-        <section class="panel " style="width: 100%; overflow-x:hidden;">
+        <section class="panel" style="width: 100%; overflow-x:hidden;">
             <div class="panel-body">
                 <div class="mb-3">
                     <label for="nombre" class="negrita">Nombre:</label>
                     <div>
                         <input class="form-control"
-                            placeholder="{{ isset($admin_empresas) ?  $admin_empresas->nombre  : 'Apple' }}"
+                            placeholder="{{ isset($admin_empresas) ? $admin_empresas->nombre : 'Apple' }}"
                             required="required"
                             name="nombre"
                             type="text"
                             id="nombre"
-                            value="{{ old('nombre empresa', isset($admin_empresas) ?  $admin_empresas->nombre  : '') }}">
+                            value="{{ old('nombre', isset($admin_empresas) ? $admin_empresas->nombre : '') }}">
+                        @error('nombre')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
 
@@ -26,6 +29,9 @@
                             oninput="autoResize(this); checkCharacterLimit(this, 200);">
                         {{ old('razon_social', isset($admin_empresas) ? $admin_empresas->razon_social : '') }}
                         </textarea>
+                        @error('razon_social')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                         <small id="word-limit-message" class="text-danger" style="display: none;">Has excedido el límite de 200 palabras.</small>
                     </div>
                 </div>
@@ -42,6 +48,9 @@
                             <option value="Manufactura" {{ isset($admin_empresas) && $admin_empresas->tipo_empresa == 'Manufactura' ? 'selected' : '' }}>Manufactura</option>
                             <option value="Otro" {{ isset($admin_empresas) && $admin_empresas->tipo_empresa == 'Otro' ? 'selected' : '' }}>Otro</option>
                         </select>
+                        @error('tipo_empresa')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
 
@@ -55,6 +64,9 @@
                             type="text"
                             id="nit"
                             value="{{ old('nit', isset($admin_empresas) ? $admin_empresas->nit : '') }}">
+                        @error('nit')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
 
@@ -68,6 +80,9 @@
                             type="text"
                             id="correo"
                             value="{{ old('correo', isset($admin_empresas) ? $admin_empresas->correo : '') }}">
+                        @error('correo')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
             </div>

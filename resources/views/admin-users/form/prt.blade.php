@@ -11,7 +11,10 @@
                             name="username"
                             type="text"
                             id="username"
-                            value="{{ old('nombre de usuario', isset($users_admin) ?  $users_admin->username  : '') }}">
+                            value="{{ old('username', isset($users_admin) ?  $users_admin->username  : '') }}">
+                        @error('username')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="mb-3">
@@ -22,6 +25,9 @@
                             <option value="2" {{ isset($users_admin) && $users_admin->id_rol == 2 ? 'selected' : '' }}>Estudiante</option>
                             <option value="3" {{ isset($users_admin) && $users_admin->id_rol == 3 ? 'selected' : '' }}>Empresa</option>
                         </select>
+                        @error('id_rol')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="mb-3">
@@ -33,7 +39,10 @@
                             name="firstname"
                             type="text"
                             id="firstname"
-                            value="{{ old('nombres', isset($users_admin) ?  $users_admin->firstname  : '') }}">
+                            value="{{ old('firstname', isset($users_admin) ?  $users_admin->firstname  : '') }}">
+                        @error('firstname')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="mb-3">
@@ -45,7 +54,10 @@
                             name="lastname"
                             type="text"
                             id="lastname"
-                            value="{{ old('Apellidos', isset($users_admin) ?  $users_admin->lastname  : '') }}">
+                            value="{{ old('lastname', isset($users_admin) ?  $users_admin->lastname  : '') }}">
+                        @error('lastname')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="mb-3">
@@ -57,7 +69,10 @@
                             name="email"
                             type="text"
                             id="email"
-                            value="{{ old('nombre de usuario', isset($users_admin) ?  $users_admin->email  : '') }}">
+                            value="{{ old('email', isset($users_admin) ?  $users_admin->email  : '') }}">
+                        @error('email')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="mb-3">
@@ -69,7 +84,10 @@
                             name="city"
                             type="text"
                             id="city"
-                            value="{{ old('Ciudad', isset($users_admin) ?  $users_admin->city  : '') }}">
+                            value="{{ old('city', isset($users_admin) ?  $users_admin->city  : '') }}">
+                        @error('city')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="mb-3">
@@ -81,7 +99,10 @@
                             name="postal"
                             type="text"
                             id="postal"
-                            value="{{ old('Codigo postal', isset($users_admin) ?  $users_admin->postal  : '') }}">
+                            value="{{ old('postal', isset($users_admin) ?  $users_admin->postal  : '') }}">
+                        @error('postal')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="mb-3">
@@ -93,7 +114,10 @@
                             name="about"
                             type="text"
                             id="about"
-                            value="{{ old('Sobre mi', isset($users_admin) ?  $users_admin->about  : '') }}">
+                            value="{{ old('about', isset($users_admin) ?  $users_admin->about  : '') }}">
+                        @error('about')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="mb-3" id="facultad-field" style="display: none;">
@@ -105,6 +129,9 @@
                             type="text"
                             id="facultad"
                             value="{{ old('facultad', isset($users_admin) ?  $users_admin->facultad  : '') }}">
+                        @error('facultad')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="mb-3" id="carrera-field" style="display: none;">
@@ -116,6 +143,9 @@
                             type="text"
                             id="carrera"
                             value="{{ old('carrera', isset($users_admin) ?  $users_admin->carrera  : '') }}">
+                        @error('carrera')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
 
@@ -129,6 +159,9 @@
                             name="password"
                             type="password"
                             id="password">
+                        @error('password')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
                 <div class="mb-3">
@@ -140,6 +173,9 @@
                             name="password_confirmation"
                             type="password"
                             id="password_confirmation">
+                        @error('password_confirmation')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
 
