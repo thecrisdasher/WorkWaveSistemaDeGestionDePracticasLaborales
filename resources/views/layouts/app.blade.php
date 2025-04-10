@@ -40,7 +40,7 @@
                 <div class="min-height-300 bg-primary position-absolute w-100"></div>
             @elseif (in_array(request()->route()->getName(), ['profile-static', 'profile']))
                 <div class="position-absolute w-100 min-height-250 top-0">
-                    <span class="mask bg-primary opacity-6"></span>
+                    <span class="mask bg-primary"></span>
                 </div>
             @endif
             @include('layouts.navbars.auth.sidenav')
