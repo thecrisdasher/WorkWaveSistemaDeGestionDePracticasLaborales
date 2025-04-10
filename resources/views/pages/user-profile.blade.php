@@ -143,9 +143,13 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <textarea class="form-control" type="text" name="about"
+                                      style="height: 200px; resize: none; overflow-y: hidden;"
+                                        value=" {{ old('about', auth()->user()->about) }}"
+                                        oninput="autoResize(this); checkCharacterLimit(this, 200);">
+                                    {{ old('about', auth()->user()->about) }}
 
-                                    <input class="form-control" type="text" name="about"
-                                        value="{{ old('about', auth()->user()->about) }}">
+                                    </textarea>
                                 </div>
                             </div>
 
@@ -221,4 +225,22 @@
                 });
         });
     });
+</script>
+<script>
+    // Función para ajustar dinámicamente el tamaño del textarea
+    function autoResize(textarea) {
+        textarea.style.height = 'auto'; // Reseteamos la altura
+        textarea.style.height = (textarea.scrollHeight) + 'px'; // Establecemos la nueva altura
+    }
+
+    // Función para verificar el límite de caracteres
+    function checkCharacterLimit(textarea, limit) {
+        const charLimitMessage = document.getElementById('char-limit-message');
+        const currentLength = textarea.value.length; // Longitud actual del texto
+        if (currentLength > limit) {
+            charLimitMessage.style.display = 'block'; // Mostramos el mensaje de error
+        } else {
+            charLimitMessage.style.display = 'none'; // Ocultamos el mensaje de error
+        }
+    }
 </script>

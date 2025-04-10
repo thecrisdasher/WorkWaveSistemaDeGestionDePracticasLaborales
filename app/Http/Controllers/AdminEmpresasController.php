@@ -39,14 +39,11 @@ class AdminEmpresasController extends Controller
             'correo' => 'required|email|max:255',
         ]);
 
-
-
         // Instancio al modelo Empresas que hace llamado a la tabla 'Empresas'
         $admin_empresas = new Empresas;
 
 
         // Asigna los valores validados al objeto
-
         $admin_empresas->id_usuario = 1;
         $admin_empresas->id_ubicacion = 1;
         $admin_empresas->nombre = $validatedData['nombre'];
@@ -56,11 +53,6 @@ class AdminEmpresasController extends Controller
         $admin_empresas->correo = $validatedData['correo'];
 
 
-
-        // Almacenos la imagen en la carpeta publica especifica,
-        // Guardamos la fecha de creación del registro
-        //$oferta->created_at = (new DateTime)->getTimestamp();
-        // Inserto todos los datos en mi tabla 'Empresas'
         $admin_empresas->save();
         // Hago una redirección a la vista principal con un mensaje
         return redirect('admin-empresas')->with('message', 'Empresa Guardada
@@ -110,16 +102,16 @@ class AdminEmpresasController extends Controller
             'correo' => 'required|email|max:255',
         ]);
 
-  
+
         $admin_empresas = Empresas::find($id_empresa);
         // Actualiza los campos con los datos del formulario
 
+        // Asigna los valores validados al objeto
         $admin_empresas->nombre = $validatedData['nombre'];
         $admin_empresas->razon_social = $validatedData['razon_social'];
         $admin_empresas->tipo_empresa = $validatedData['tipo_empresa'];
         $admin_empresas->nit = $validatedData['nit'];
         $admin_empresas->correo = $validatedData['correo'];
-
 
         // Guarda los cambios en la base de datos
         $admin_empresas->save();
