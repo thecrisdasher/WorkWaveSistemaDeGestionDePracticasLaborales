@@ -106,15 +106,20 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="about" class="negrita">Sobre:</label>
+                    <label for="about" class="negrita">Sobre mi:</label>
                     <div>
-                        <input class="form-control"
+                        <textarea 
+                        style="resize: none; overflow-y: hidden;"
+                        class="form-control"
                             placeholder="{{ isset($users_admin) ?  $users_admin->about  : '' }}"
                             required="required"
                             name="about"
                             type="text"
                             id="about"
-                            value="{{ old('about', isset($users_admin) ?  $users_admin->about  : '') }}">
+                            value="{{ old('about', isset($users_admin) ?  $users_admin->about  : '') }}"
+                            oninput="autoResize(this); checkCharacterLimit(this, 200);">
+                            {{ old('about', isset($users_admin) ?  $users_admin->about  : '') }}
+                        </textarea>
                         @error('about')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -211,4 +216,22 @@
         // Escuchar cambios en el select de roles
         idRolSelect.addEventListener('change', toggleFields);
     });
+</script>
+<script>
+    // Función para ajustar dinámicamente el tamaño del textarea
+    function autoResize(textarea) {
+        textarea.style.height = 'auto'; // Reseteamos la altura
+        textarea.style.height = (textarea.scrollHeight) + 'px'; // Establecemos la nueva altura
+    }
+
+    // Función para verificar el límite de caracteres
+    function checkCharacterLimit(textarea, limit) {
+        const charLimitMessage = document.getElementById('char-limit-message');
+        const currentLength = textarea.value.length; // Longitud actual del texto
+        if (currentLength > limit) {
+            charLimitMessage.style.display = 'block'; // Mostramos el mensaje de error
+        } else {
+            charLimitMessage.style.display = 'none'; // Ocultamos el mensaje de error
+        }
+    }
 </script>

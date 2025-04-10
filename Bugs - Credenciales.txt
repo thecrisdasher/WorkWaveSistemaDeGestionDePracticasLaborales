@@ -14,7 +14,7 @@ Password: secret
 2:
 
 Rol: Estudiante
-Email: camilosol@gmail.com
+Email: camilosol123@gmail.com
 Password: camilosol
 
 
