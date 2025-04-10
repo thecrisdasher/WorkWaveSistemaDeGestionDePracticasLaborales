@@ -41,20 +41,7 @@
         <canvas id="postulacionesPorMesChart" style="height: 400px; width: 100%;"></canvas>
     </div>
 
-    <!-- Slider de postulantes -->
-    <h2 style="text-align: center; font-size: 24px; color: #000; margin: 120px 0;">Postulantes registrados</h2>
-    <div class="container-fluid mt-5" style="width: 80%; display: flex; justify-content: center; flex-wrap: wrap;">
-        <div class="offer-slider" style="width: 100%; height: 250px;">
-            @foreach($postulantes as $postulante)
-            <div class="card" style="border: none; margin: 10px;">
-                <div class="card-body" style="height: 150px;">
-                    <p class="card-title" style="height: 50px;"><strong>Nombre:</strong> {{ $postulante->nombre }}</p>
-                    <p class="card-title" style="height: 100px;"><strong>Apellido:</strong> {{ $postulante->apellido }}</p>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
+
 
     <!-- Gráfico de postulaciones por empresa -->
     <div class="container-fluid mt-5" style="    width: 80%;
@@ -153,28 +140,7 @@ var postulacionesPorEmpresaChart = new Chart(ctx2, {
     </script>
 
     <script>
-        $(document).ready(function() {
-            $('.offer-slider').slick({
-                infinite: true,
-                slidesToShow: 3,
-                slidesToScroll: 3,
-                autoplay: true,
-                autoplaySpeed: 2000,
-                responsive: [{
-                        breakpoint: 1024,
-                        settings: {
-                            slidesToShow: 2
-                        }
-                    },
-                    {
-                        breakpoint: 600,
-                        settings: {
-                            slidesToShow: 1
-                        }
-                    }
-                ]
-            });
-
+   
             // Mostrar overlay de carga cuando se aplica un filtro
             $('#filter-form').on('submit', function() {
                 $('#loading-overlay').css('display', 'flex');

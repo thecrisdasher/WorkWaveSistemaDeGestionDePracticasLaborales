@@ -9,7 +9,7 @@
                     <span class="card-title">Actualizar Empresa</span>
                 </div>
                 <div class="card-body"
-                    style="box-shadow: 0 15px 1rem 0 rgba(0, 0, 0, 0.2); overflow-x:hidden; width: clamp(21.875rem, 10.714rem + 29.762vw, 37.5rem); border-radius: 0 0 15px 15px;">
+                    style="box-shadow: 0 15px 1rem 0 rgba(0, 0, 0, 0.2); overflow-x:hidden; width: 100%; border-radius: 0 0 15px 15px;">
                     
                     <form method="POST" action="{{ route('admin-empresas.update', $admin_empresas->id_empresa) }}"
                         role="form" enctype="multipart/form-data">

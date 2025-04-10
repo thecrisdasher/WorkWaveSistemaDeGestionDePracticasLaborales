@@ -25,6 +25,10 @@ Password: camilosol
 
 ### 🚨 Problemas Pendientes:
 
+1. no permite postular a los nuevos usuarios (Revisar si hay validaciones por usuarios en el modelo)
+2. cambiar color principal a uno BIEN CAMACHISTA (#26467d)
+3. Enlace de proyecto http
+
 
 
 --------

@@ -61,7 +61,7 @@ class UsersAdminController extends Controller
         $users_admin->about = $validatedData['about'] ?? null;
         $users_admin->carrera = $validatedData['carrera'] ?? 'No estudiante';
         $users_admin->facultad = $validatedData['facultad'] ?? 'No estudiante';
-        $users_admin->password = bcrypt($validatedData['password']); // Encriptar la contraseña
+        $users_admin->password = $validatedData['password']; // Encriptar la contraseña
 
         // Guardar el usuario
         $users_admin->save();

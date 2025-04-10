@@ -91,14 +91,14 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Facultad/tecnio...</label>
+                                    <label for="example-text-input" class="form-control-label">Programa</label>
                                     <input class="form-control" type="text" name="facultad"
                                         value="{{ old('facultad', auth()->user()->facultad) }}" disabled> <!-- Campo deshabilitado -->
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Carrera/tecnio...</label>
+                                    <label for="example-text-input" class="form-control-label">Carrera</label>
                                     <input class="form-control" type="text" name="carrera"
                                         value="{{ old('carrera', auth()->user()->carrera) }}" disabled> <!-- Campo deshabilitado -->
                                 </div>
