@@ -7,6 +7,7 @@ use App\Models\Empresas;
 use App\Models\Postulantes;
 use Illuminate\Support\Facades\DB;
 use App\Enums\RolType; // Asegúrate de incluir el enum RolType
+use App\Models\Postulante;
 
 class DashboardController extends Controller
 {
@@ -14,7 +15,7 @@ class DashboardController extends Controller
     {
         // Obtener todas las ofertas, empresas, postulantes
         $ofertas = Ofertas::all();
-        $postulantes = Postulantes::all();
+        $postulantes = Postulante::all();
         $empresas = Empresas::all();
 
         // Obtener el rol del usuario autenticado
