@@ -28,6 +28,7 @@ Password: camilosol
 1. no permite postular a los nuevos usuarios (Revisar si hay validaciones por usuarios en el modelo)
 2. cambiar color principal a uno BIEN CAMACHISTA (#26467d) - (OK)
 3. Enlace de proyecto http -- > https://workwave-main-fdct3t.laravel.cloud/login
+4. cambiar vista de filtros como imagen en discord
 
 
 
