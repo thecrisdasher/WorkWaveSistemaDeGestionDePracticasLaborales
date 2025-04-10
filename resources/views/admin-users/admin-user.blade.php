@@ -9,21 +9,17 @@
 
                 <!-- Campo de búsqueda -->
                 <div class="mb-3">
-                    <label for="filter-nombre" class="form-label">Filtrar por Nombre:</label>
-                    <input type="text" id="filter-nombre" class="form-control" placeholder="Buscar por nombre..." style="width: 300px;">
+                    <label for="filter-nombre" class="form-label">Filtrar por caracter:</label>
+                    <input type="text" id="filter-nombre" class="form-control" placeholder="Buscar por caracter..." style="width: 300px;">
                 </div>
 
                 <table class="table align-items-center mb-0">
                     <thead>
                         <tr>
-                            <th>Nombre De Usuario</th>
+                            <th>Usuario</th>
                             <th>Rol</th>
                             <th>Nombre</th>
-                            <th>Apellido</th>
                             <th>Email</th>
-                            <th>Ciudad</th>
-                            <th>Postal</th>
-                            <th>Sobre</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -31,13 +27,23 @@
                         @foreach ($users_admin as $users_admi)
                         <tr>
                             <td class="v-align-middle">{{ $users_admi->username }}</td>
-                            <td class="v-align-middle">{{ $users_admi->id_rol ?? 'Sin rol' }}</td>
+                            <td class="v-align-middle">
+                                @switch($users_admi->id_rol)
+                                @case('1')
+                                Administrador
+                                @break
+                                @case('2')
+                                Estudiante
+                                @break
+                                @case('3')
+                                Empresa
+                                @break
+                                @default
+                                Desconocido o sin rol
+                                @endswitch
+                            </td>
                             <td class="v-align-middle">{{ $users_admi->firstname }}</td>
-                            <td class="v-align-middle">{{ $users_admi->lastname }}</td>
                             <td class="v-align-middle">{{ $users_admi->email }}</td>
-                            <td class="v-align-middle">{{ $users_admi->city }}</td>
-                            <td class="v-align-middle">{{ $users_admi->postal }}</td>
-                            <td class="v-align-middle">{{ $users_admi->about }}</td>
                             <td class="v-align-middle">
                                 <form action="" method="POST" class="form-horizontal" role="form">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -64,7 +70,7 @@
 
 <script>
     // Filtro dinámico por nombre
-    document.getElementById('filter-nombre').addEventListener('input', function () {
+    document.getElementById('filter-nombre').addEventListener('input', function() {
         const filter = this.value.toLowerCase();
         const rows = document.querySelectorAll('#table-body tr');
 

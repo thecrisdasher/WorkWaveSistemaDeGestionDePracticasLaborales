@@ -3,11 +3,11 @@
 <div class="row mt-0 mx-4" style="width: 90%;">
     <a href="{{ route('oferta.create') }}" class="btn btn-success mt-4 ml-3 mb-4" style="width: 300px;">Agregar oferta</a>
 
-    <!-- Campo de búsqueda -->
-    <div class="mb-3">
-        <label for="filter-nombre" class="form-label">Filtrar por Nombre:</label>
-        <input type="text" id="filter-nombre" class="form-control" placeholder="Buscar por nombre..." style="width: 300px;">
-    </div>
+       <!-- Campo de búsqueda -->
+       <div class="mb-3">
+                    <label for="filter-nombre" class="form-label">Filtrar por caracter:</label>
+                    <input type="text" id="filter-nombre" class="form-control" placeholder="Buscar por caracter..." style="width: 300px;">
+                </div>
 
     <table class="table align-items-center mb-0">
         <thead>
@@ -38,6 +38,7 @@
                     </form>
                 </td>
             </tr>
+            @include('oferta.form.modal')
             @endforeach
         </tbody>
     </table>

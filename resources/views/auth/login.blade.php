@@ -26,11 +26,11 @@
                                     @csrf
                                     @method('post')
                                     <div class="flex flex-col mb-3">
-                                        <input type="email" name="email" class="form-control form-control-lg" value="{{ old('email') ?? 'admin@argon.com' }}" aria-label="Email">
+                                        <input type="email" name="email" class="form-control form-control-lg" value="{{ old('email') ?? '' }}" aria-label="Email">
                                         @error('email') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
                                     <div class="flex flex-col mb-3">
-                                        <input type="password" name="password" class="form-control form-control-lg" aria-label="Password" value="secret">
+                                        <input type="password" name="password" class="form-control form-control-lg" aria-label="Password" value="">
                                         @error('password') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
                                     <div class="form-check form-switch">
@@ -38,7 +38,7 @@
                                         <label style="color: blue;" class="form-check-label" for="rememberMe">Recuerdame</label>
                                     </div>
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
+                                        <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Ingresar</button>
                                     </div>
                                 </form>
                             </div>
@@ -57,10 +57,11 @@
                         </div>
                     </div>
                     <div
-                        class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column" style="display: grid !important;
-    align-items: center;
-    justify-items: center;
-    margin-right: 50px;">
+                        class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column" style="
+                        display: grid !important;
+                        align-items: center;
+                        justify-items: center;
+                        margin-right: 50px;">
 
                         <div class="animate__animated animate__fadeInDown  position-relative bg-transparent h-100 ml-0 mt-10 m-4 px-1 border-radius-lg d-flex flex-column justify-content-center overflow-hidden background-size: cover;" style="    margin: 0 !important;">
                             <h4 class="mt-5 text-black font-weight-bolder position-relative">"Tus practicas laborales en un par de clicks."</h4>

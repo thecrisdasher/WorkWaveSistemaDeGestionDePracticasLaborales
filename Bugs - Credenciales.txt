@@ -1,0 +1,46 @@
+# ⚙ CREDENCIALES PARA PRUEBAS
+
+-----------------
+
+
+1: 
+
+Rol: Administrador
+Email: admin@argon.com
+Password: secret
+
+**************************
+
+2:
+
+Rol: Estudiante
+Email: camilosol123@gmail.com
+Password: camilosol
+
+
+****************************
+
+
+# 🐞 BUGS CRUD
+
+### 🚨 Problemas Pendientes:
+
+
+
+--------
+
+### ✅ Mejoras Implementadas:
+
+1. 🏢 **Agregar el NIT de la empresa o información más relevante de la empresa.** (✔️ OK)
+2. 📝 **La descripción ahora se expande hacia abajo (rectangular) para que el Admin pueda ver todo el contenido.** (✔️ OK)
+3. 🖥️ **El perfil ahora es más grande y ocupa más pantalla, con el mismo ancho que la tarjeta de “Hola, Administrador”.** (✔️ OK)
+4. ✅ **Agregar opción de “Seleccionar Todas” en los filtros.** (✔️ OK)
+5. 🎨 **El apartado de empresas ahora tiene tarjetas más grandes para que se vea visualmente mejor.** (✔️ OK)
+6. 🛠️ **Acomodar el botón "Ver Oferta" cuando la descripción no es tan grande.** (✔️ OK)
+7. 👀 **Agregar el apartado de “Ver Postulaciones”.** (✔️ OK)
+8. 🔍 **Al buscar una oferta, ahora muestra todas las ofertas relacionadas en lugar de redirigir directamente a una oferta.** (✔️ OK)
+9. 🧹 **El filtro de usuarios por nombre ahora funciona correctamente, y la tabla de información está mejor organizada.** (✔️ OK)
+10. 📱 **El CRUD ahora se adapta correctamente a pantallas pequeñas.** (✔️ OK)
+
+
+----

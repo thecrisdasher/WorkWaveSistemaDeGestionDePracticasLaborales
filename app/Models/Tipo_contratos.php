@@ -14,10 +14,10 @@ class Tipo_contratos extends Model
 		'name' => 'required|string',
 		'email' => 'required|string',
     ];
-    // Instancio la tabla 'productos'
+    // Instancio la tabla 'contratos'
     protected $table = 'tipo_contratos';
 
-    // Declaro los campos que usaré de la tabla 'productos'
+    // Declaro los campos que usaré de la tabla 'contratos'
     protected $primaryKey = 'id_tipo_contrato';
     protected $fillable = ['tipo'];
 

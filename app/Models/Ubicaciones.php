@@ -11,16 +11,16 @@ class Ubicaciones extends Model
     use HasFactory;
 
     static $rules = [
-		'name' => 'required|string',
-		'email' => 'required|string',
+        'ciudad' => 'required|string|max:255', // Campo 'nombre' es obligatorio y debe ser una cadena
+        'direccion' => 'required|string|max:255', // Campo 'direccion' es obligatorio y debe ser una cadena
     ];
     // Instancio la tabla 'productos'
     protected $table = 'ubicaciones';
 
     // Declaro los campos que usaré de la tabla 'productos'
     protected $primaryKey = 'id_ubicacion';
-    protected $fillable = ['direccion', 'ciudad'];
-
+    protected $fillable = ['ciudad', 'direccion'];
+    public $timestamps = false; // Desactiva las marcas de tiempo
     public function empresas(): HasMany
     {
         return $this->hasMany(Empresas::class);

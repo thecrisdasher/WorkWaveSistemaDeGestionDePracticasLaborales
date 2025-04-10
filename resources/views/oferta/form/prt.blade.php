@@ -31,13 +31,16 @@
                 <div class="mb-3">
                     <label for="descripcion" class="negrita">Descripción:</label>
                     <div>
-                        <input class="form-control"
-                            placeholder="{{ isset($oferta) ? $oferta->descripcion : 'Descripción de la empre' }}"
-                            required="required"
+                        <textarea class="form-control" style="height: 130px; resize: none; overflow-y: hidden;"
+                            placeholder="{{ isset($oferta) ? $oferta->descripcion : 'Descripción de la empresa' }}"
                             name="descripcion"
                             type="text"
                             id="descripcion"
-                            value="{{ old('descripcion', isset($oferta) ? $oferta->descripcion : '') }}">
+                            maxlength="450" 
+                            oninput="autoResize(this); checkCharacterLimit(this, 450);">
+                        {{ old('descripcion', isset($oferta) ? $oferta->descripcion : '') }}
+                        </textarea>
+                        <small id="char-limit-message" class="text-danger" style="display: none;">Has excedido el límite de 450 caracteres.</small>
                     </div>
                 </div>
 
@@ -63,5 +66,34 @@
 
             </div>
         </section>
+        <script>
+            // Función para ajustar dinámicamente el tamaño del textarea
+            function autoResize(textarea) {
+                textarea.style.height = 'auto'; // Reseteamos la altura
+                textarea.style.height = (textarea.scrollHeight) + 'px'; // Establecemos la nueva altura
+            }
+
+            // Función para verificar el límite de palabras
+            function checkWordLimit(textarea, limit) {
+                const wordLimitMessage = document.getElementById('word-limit-message');
+                const words = textarea.value.trim().split(/\s+/); // Dividimos el texto en palabras
+                if (words.length > limit) {
+                    wordLimitMessage.style.display = 'block'; // Mostramos el mensaje de error
+                } else {
+                    wordLimitMessage.style.display = 'none'; // Ocultamos el mensaje de error
+                }
+            }
+
+            // Función para verificar el límite de caracteres
+            function checkCharacterLimit(textarea, limit) {
+                const charLimitMessage = document.getElementById('char-limit-message');
+                const currentLength = textarea.value.length; // Longitud actual del texto
+                if (currentLength > limit) {
+                    charLimitMessage.style.display = 'block'; // Mostramos el mensaje de error
+                } else {
+                    charLimitMessage.style.display = 'none'; // Ocultamos el mensaje de error
+                }
+            }
+        </script>
     </div>
 </div>

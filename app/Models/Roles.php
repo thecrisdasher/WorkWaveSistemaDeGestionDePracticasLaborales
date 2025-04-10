@@ -18,7 +18,8 @@ class Roles extends Model
 
     // Declaro los campos que usaré de la tabla 'productos'
     protected $primaryKey = 'id_rol';
-    protected $fillable = ['tipo_rol_usuario'];
+    protected $fillable = ['id_rol', 'tipo_rol_usuario'];
+    public $timestamps = false; // Desactiva las marcas de tiempo
 
     public function users()
     {

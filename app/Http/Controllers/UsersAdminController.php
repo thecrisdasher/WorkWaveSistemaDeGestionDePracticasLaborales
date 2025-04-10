@@ -35,40 +35,39 @@ class UsersAdminController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            // Validar los datos del formulario
-            $validatedData = $request->validate([
-                'username' => 'required|max:255|unique:users',
-                'id_rol' => 'required|max:255',
-                'firstname' => 'required|max:100',
-                'lastname' => 'required|max:100',
-                'email' => 'required|email|max:255|unique:users',
-                'password' => 'required|min:8|confirmed', // Validación para la contraseña
-                'city' => 'nullable|max:100',
-                'postal' => 'nullable|max:20',
-                'about' => 'nullable|max:255',
-            ]);
+        // Validar los datos de entrada
+        $validatedData = $request->validate([
+            'username' => 'required|string|max:255|unique:users,username', // Validación para evitar duplicados
+            'id_rol' => 'required|exists:roles,id_rol',
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+            'city' => 'nullable|string|max:255',
+            'about' => 'nullable|string|max:500',
+            'carrera' => 'nullable|string|max:255',
+            'facultad' => 'nullable|string|max:255',
+        ]);
 
-            // Crear un nuevo usuario
-            $users_admin = new User;
-            $users_admin->username = $validatedData['username'];
-            $users_admin->id_rol = $validatedData['id_rol'];
-            $users_admin->firstname = $validatedData['firstname'];
-            $users_admin->lastname = $validatedData['lastname'];
-            $users_admin->email = $validatedData['email'];
-            $users_admin->password = bcrypt($validatedData['password']); // Encripta la contraseña
-            $users_admin->city = $validatedData['city'];
-            $users_admin->postal = $validatedData['postal'];
-            $users_admin->about = $validatedData['about'];
+        // Crear un nuevo usuario con los datos validados
+        $users_admin = new User;
+        $users_admin->username = $validatedData['username'];
+        $users_admin->id_rol = $validatedData['id_rol'];
+        $users_admin->firstname = $validatedData['firstname'];
+        $users_admin->lastname = $validatedData['lastname'];
+        $users_admin->email = $validatedData['email'];
+        $users_admin->city = $validatedData['city'] ?? null;
+        $users_admin->postal = 1; // Valor predeterminado
+        $users_admin->about = $validatedData['about'] ?? null;
+        $users_admin->carrera = $validatedData['carrera'] ?? 'No estudiante';
+        $users_admin->facultad = $validatedData['facultad'] ?? 'No estudiante';
+        $users_admin->password = bcrypt($validatedData['password']); // Encriptar la contraseña
 
-            // Guardar el usuario en la base de datos
-            $users_admin->save();
-            // Redirigir con un mensaje de éxito
-            return redirect('admin-users')->with('message', 'Usuario guardado satisfactoriamente!');
-        } catch (\Exception $e) {
-            // Captura el error y redirige con el mensaje
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
+        // Guardar el usuario
+        $users_admin->save();
+
+        // Redirigir con un mensaje de éxito
+        return redirect('admin-users')->with('message', 'Usuario guardado satisfactoriamente!');
     }
 
     public function update(Request $request, $id)
@@ -83,14 +82,19 @@ class UsersAdminController extends Controller
         $users_admin->postal = 1;
         $users_admin->about = $request->about;
 
+        // Asignar valores por defecto si no se proporcionan
+        $users_admin->carrera = $request->carrera ?? 'No estudiante';
+        $users_admin->facultad = $request->facultad ?? 'No estudiante';
+
         if ($request->filled('password')) {
-            $users_admin->password = bcrypt($request->password); // Actualiza la contraseña solo si se proporciona
+            $users_admin->password = $request->password; // Actualiza la contraseña solo si se proporciona
         }
 
-        // Actualizo los datos en la tabla 'usuarios'
+        // Guardar los cambios
         $users_admin->save();
-        // Muestro un mensaje y redirecciono a la vista principal
-        Session::flash('message', 'Editado Satisfactoriamente !');
+
+        // Redirigir con un mensaje de éxito
+        Session::flash('message', 'Editado satisfactoriamente!');
         return Redirect::to('admin-users');
     }
 
