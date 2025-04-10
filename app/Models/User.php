@@ -71,7 +71,7 @@ class User extends Authenticatable
 
     public function postulantes(): HasMany
     {
-        return $this->hasMany(Postulantes::class);
+        return $this->hasMany(postulante::class);
     }
     public function roles()
     {

@@ -5,6 +5,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 <div class="container-fluid py-2" style="height: 35vh;">
     <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-4 mb-4">
@@ -12,7 +17,7 @@
                 <div class="card-body d-flex align-items-center justify-content-center p-3">
                     <div class="row">
                         <div class="col-8 text-center">
-                            <div class="numbers">
+                            <div class="numbers animate__animated animate__fadeInDown">
                                 <h1 class="mt-3  text-white font-weight-bolder" style="width: 600px;">Conoce la oferta de <strong style="color: aqua; ">{{ $oferta->nombre_oferta }}</strong></h1>
                             </div>
                         </div>
@@ -67,7 +72,7 @@
 
 <!-- Slider de Ofertas -->
 <h2 style="text-align: center; font-size: 24px; color: #000; margin: 40px 0;">Otras ofertas</h2>
-<div class="container-fluid mt-5" style="    
+<div class="container-fluid mt-5" data-aos="fade-down"  style="    
     width: 100%;
     height: 400px;
     display: flex;
@@ -243,5 +248,9 @@
             },
         },
     });
+</script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
 </script>
 @endpush

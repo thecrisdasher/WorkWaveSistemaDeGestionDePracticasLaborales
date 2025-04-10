@@ -5,6 +5,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <!-- Overlay de carga -->
@@ -29,9 +34,9 @@
 </div>
 
 <!-- Buscador -->
-<div class="input-group" style="position:relative; width: 70%; margin:50px auto;">
+<div class="input-group animate__animated animate__fadeInUp" style="position:relative; width: 70%; margin:50px auto;">
     <input id="search-input" style="border-radius: 20px; height: 70px;" type="text" class="form-control buscador" placeholder="Busca tus prácticas ideales aquí...">
-    <button id="search-button" class="btn btn-primary" style="margin-left: 10px; height: 70px; border-radius: 15px;">Ofertas Relacionadas</button>
+    <button id="search-button" class="btn btn-primary animate__animated animate__fadeInDown" style="margin-left: 10px; height: 70px; border-radius: 15px;">Ofertas Relacionadas</button>
 </div>
 
 <!-- Overlay de "Buscando..." -->
@@ -70,8 +75,8 @@
 
 <!-- Sección de Ofertas -->
 <section>
-    <div class="container" style="margin-bottom: 30px; top: 80px; position: relative; display: flex; justify-content: center; flex-wrap: wrap; width: 100%;">
-        <form method="GET" action="{{ route('principal') }}" id="filter-form">
+    <div class="container animate__animated animate__zoomIn" style="margin-bottom: 30px; top: 80px; position: relative; display: flex; justify-content: center; flex-wrap: wrap; width: 100%;">
+        <form method="GET" action="{{ route('principal') }}" id="filter-form" style="display: flex;">
             <div class="row" style="gap: 100px;">
                 <div class="col-md-4">
                     <label for="fecha_publicacion" class="form-label">Fecha de Publicación</label>
@@ -96,19 +101,21 @@
                     </select>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary mt-3">Aplicar Filtros</button>
-            <button type="button" class="btn btn-secondary mt-3" id="reset-filters">
-                <a style="color: white;" href="{{ route('page', ['page' => 'principal']) }}">Limpiar Filtros</a>
+            <div style="gap: 10px; display: flex; align-items: flex-end;">
+            <button type="submit" class="btn btn-primary mt-3" style="margin: 0;">Aplicar Filtros</button>
+            <button type="button" class="btn btn-secondary mt-3" id="reset-filters" style="margin: 0;">
+                <a style="color: white;" href="{{ route('page', ['page' => 'principal']) }}" >Limpiar Filtros</a>
             </button>
+            </div>
         </form>
     </div>
 
     <!-- Ofertas en dos columnas -->
-    <h2 style="text-align: center; font-size: 24px; color: #000; margin: 120px 0;">Ofertas disponibles</h2>
-    <div class="container" style="width: 80%; display: flex; justify-content: center;">
+    <h2 style="text-align: center; font-size: 24px; color: #000; margin-bottom: 100px; margin-top: 250px;">Ofertas disponibles</h2>
+    <div class="container " style="width: 80%; display: flex; justify-content: center;">
         <div class="row">
             @foreach($ofertas as $oferta)
-            <div class="col-md-6 mb-4">
+            <div class="col-md-6 mb-4" data-aos="fade-up">
                 <div class="card" style="border: none; padding: 15px; align-items: flex-start;">
                     <div class="card-body">
                         <h5 class="card-title">{{ $oferta->nombre_oferta }}</h5>
@@ -124,7 +131,7 @@
 
 <!-- Slider de Empresas -->
 <h2 style="text-align: center; font-size: 24px; color: #000; margin: 120px 0;">Empresas</h2>
-<div class="container-fluid mt-5" style="width: 80%; display: flex; justify-content: center; flex-wrap: wrap;">
+<div data-aos="fade-down" class="container-fluid mt-5" style="width: 80%; display: flex; justify-content: center; flex-wrap: wrap;">
     <div class="offer-slider" style="width: 100%; height: 250px;">
         @foreach($empresas as $empresa)
         <div class="card" style="border: none; margin: 10px;">
@@ -139,7 +146,7 @@
 
 <!-- Gráfico de Ofertas -->
 <h2 style="text-align: center; font-size: 24px; color: #000; margin: 120px 0;">Fecha nuevas empresas</h2>
-<div class="container" style="width: 80%; margin-bottom: 50px;">
+<div data-aos="flip-left" class="container" style="width: 80%; margin-bottom: 50px;">
     <canvas id="ofertasChart"></canvas>
 </div>
 
@@ -241,5 +248,9 @@
             window.location.href = "{{ route('buscar.ofertas') }}?query=" + encodeURIComponent(query);
         });
     });
+</script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
 </script>
 @endpush

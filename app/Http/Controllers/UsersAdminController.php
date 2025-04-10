@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Postulante;
 use Illuminate\Http\Request;
 use Session;
 use Redirect;
@@ -66,8 +67,19 @@ class UsersAdminController extends Controller
         // Guardar el usuario
         $users_admin->save();
 
+        // Si el rol es "estudiante", crear un registro en la tabla `postulantes`
+        if ($users_admin->id_rol == 2) { // Suponiendo que el rol de estudiante tiene el ID 2
+            Postulante::create([
+                'id_postulante' => $users_admin->id, // Usar el ID del usuario recién creado
+                'nombre' => $users_admin->firstname,
+                'apellido' => $users_admin->lastname,
+                'fecha_nacimiento' => null, // Asignar un valor por defecto o null
+                'id' => $users_admin->id, // Relación con la tabla `users`
+            ]);
+        }
+
         // Redirigir con un mensaje de éxito
-        return redirect('admin-users')->with('message', 'Usuario guardado satisfactoriamente!');
+        return redirect('admin-users')->with('message', 'Usuario y postulante creados satisfactoriamente!');
     }
 
     public function update(Request $request, $id)

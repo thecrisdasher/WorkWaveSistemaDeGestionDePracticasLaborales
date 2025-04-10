@@ -2,7 +2,11 @@
 
 @section('content')
 @include('layouts.navbars.auth.topnav', ['title' => 'Tu perfil'])
-<div class="card shadow-lg mx-4 mt-4 card-profile-bottom" style="align-items: flex-start;" >
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+<div class="card shadow-lg mx-4 mt-4 card-profile-bottom animate__animated animate__fadeInDown" style="align-items: flex-start;" >
     <div class="card-body p-3">
         <div class="row gx-4">
             <div class="col-auto">

@@ -7,11 +7,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="csrf-token" content="{{csrf_token() }}">
-
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 
 <!-- Aquí puedes poner el contenido del Dashboard -->
 
-<div class="container-fluid py-2" style="width: auto;
+<div class="container-fluid py-2 " style="width: auto;
     background: green;
     display: flex
 ;
@@ -23,7 +26,7 @@
                     <div class="row">
                         <div class="col-8 text-center">
                             <div class="numbers">
-                                <h1 class="mt-3  text-white font-weight-bolder" style="    width: 500px;
+                                <h1 class="mt-3 animate__animated animate__fadeInUp  text-white font-weight-bolder" style="    width: 500px;
     display: flex;
     align-items: center;
     justify-content: flex-end;">Mis estadisticas 📊</h1>
@@ -37,7 +40,7 @@
 </div>
 
 
-<div class="container" style="margin-top: 150px;">
+<div class="container animate__animated animate__fadeInDown" style="margin-top: 150px;">
     <div class="row" style="
     gap: 50px;
     justify-content: center;">
