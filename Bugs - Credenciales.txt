@@ -29,6 +29,8 @@ Password: camilosol
 2. cambiar color principal a uno BIEN CAMACHISTA (#26467d)
 3. Enlace de proyecto http
 
+
+
 --------
 
 ### ✅ Mejoras Implementadas:
