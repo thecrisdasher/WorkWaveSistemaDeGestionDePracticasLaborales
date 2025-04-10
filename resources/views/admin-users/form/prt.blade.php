@@ -117,7 +117,7 @@
                             type="text"
                             id="about"
                             value="{{ old('about', isset($users_admin) ?  $users_admin->about  : '') }}"
-                            oninput="autoResize(this); checkCharacterLimit(this, 200);">
+                            oninput="autoResize(this); checkCharacterLimit(this, 500);">
                             {{ old('about', isset($users_admin) ?  $users_admin->about  : '') }}
                         </textarea>
                         @error('about')
