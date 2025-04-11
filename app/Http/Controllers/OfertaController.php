@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Empresas;
 use App\Models\Ofertas;
 use App\Models\Tipo_cargos;
 use Illuminate\Http\Request;
@@ -32,9 +33,12 @@ class OfertaController extends Controller
      */
     public function create()
     {
-        $tiposCargos = TipoCargo::all(); // Obtén todos los cargos desde la tabla tipo_cargos
-        return view('oferta.createoferta', compact('tiposCargos'));
+        $empresas = Empresas::all(); 
+        $tiposCargos = TipoCargo::all(); 
+    
+        return view('oferta.createoferta', compact('tiposCargos', 'empresas'));
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -100,7 +104,8 @@ class OfertaController extends Controller
      */
     public function edit($id_oferta)
     {
-        $tiposCargos = Tipo_cargos::all(); // Asumiendo que los tipos de cargo están en una tabla llamada tipo_cargos
+       
+        $tiposCargos = TipoCargo::all(); // Obtén todos los cargos desde la tabla tipo_cargos
         $oferta = Ofertas::find($id_oferta);
         return view('oferta.edit', compact('oferta'), compact('tiposCargos'));
     }
@@ -210,10 +215,10 @@ class OfertaController extends Controller
 
     public function showofertas($id)
     {
-        $oferta = Oferta::findOrFail($id);
+        $oferta = Ofertas::findOrFail($id);
 
         // Obtener otras ofertas (puedes cambiar el criterio de búsqueda según lo necesites)
-        $otras_ofertas = Oferta::where('id_oferta', '!=', $id) // No mostrar la misma oferta
+        $otras_ofertas = Ofertas::where('id_oferta', '!=', $id) // No mostrar la misma oferta
             ->take(5) // Mostrar un máximo de 5 ofertas
             ->get();
 

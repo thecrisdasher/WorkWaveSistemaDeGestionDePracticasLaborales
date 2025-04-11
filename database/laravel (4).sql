@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-04-2025 a las 23:58:16
+-- Tiempo de generación: 11-04-2025 a las 15:39:08
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -39,15 +39,6 @@ CREATE TABLE `empresas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `empresas`
---
-
-INSERT INTO `empresas` (`id_empresa`, `nombre`, `razon_social`, `tipo_empresa`, `nit`, `correo`, `id_ubicacion`, `id_usuario`, `created_at`, `updated_at`) VALUES
-(1, 'EcoLiving', 'Software', 'Tecnología', '3245-4QTAS', 'EMPRESAREAL@GMAIL.COM', 1, 1, '2025-04-08 20:51:13', '2025-04-08 20:51:13'),
-(2, 'Tech Solutions', 'Software', 'Salud', '3245-4QTAS', 'EMPRESAREAL@GMAIL.COM', 1, 1, '2025-04-08 20:51:32', '2025-04-08 20:51:32'),
-(3, 'ABEL SOFT', 'Desarrollo web', 'Educación', '3245-4QTAS', 'EMPRESAREAL@GMAIL.COM', 1, 1, '2025-04-08 20:51:50', '2025-04-08 20:51:50');
 
 -- --------------------------------------------------------
 
@@ -149,21 +140,6 @@ CREATE TABLE `ofertas` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Volcado de datos para la tabla `ofertas`
---
-
-INSERT INTO `ofertas` (`id_oferta`, `nombre_oferta`, `descripcion`, `salario`, `fecha_limite`, `id_tipo_cargo`, `id_tipo_contrato`, `id_empresa`, `id_ubicacion`, `created_at`, `updated_at`) VALUES
-(1, 'Desarrollador Web', 'VRIZE is a Global Digital & Data Engineering company, committed to delivering end-to-end Digital solutions and services to its customers worldwide. We offer business-friendly solutions across industry verticals that include Banking, Financial Services, Healthcare & Insurance, Manufacturing, and Retail. The company has strategic business alliances with industry leaders such as Adobe, IBM Sterling Commerce, IBM, Microsoft, Docker, Sisense, Competera, Snowflake, and Tableau.VRIZE is headqua\"', 2000000.00, '2025-06-01', 1, 1, 1, 1, '2025-03-30 03:55:13', '2025-04-07 23:01:53'),
-(2, 'Analista de Datos', 'We are looking for a skilled Front-End Developer with expertise in React.js and Next.js to join our team. The ideal candidate will be responsible for developing and maintaining high-quality, scalable, and responsive web applications while working closely ', 4500000.00, '2025-07-15', 2, 2, 2, 2, '2025-03-30 03:55:13', '2025-03-30 03:55:13'),
-(3, 'Diseñador UX/UI', 'Diseño de interfaces para aplicaciones web y móviles', 4000000.00, '2025-08-10', 3, 1, 3, 3, '2025-03-30 03:55:13', '2025-03-30 03:55:13'),
-(4, 'Soporte sistemas', 'lore', 400000.00, NULL, 1, 1, 1, 1, '2025-03-30 09:02:27', '2025-04-05 04:08:04'),
-(6, 'holaaa', 'rfef', 3453.00, NULL, 1, 1, 1, 1, '2025-03-30 09:10:19', '2025-03-30 21:03:32'),
-(7, 'Contador js', 'regey rjhbvyu5kjtuim', 2.00, NULL, 1, 1, 1, 1, '2025-03-30 21:02:47', '2025-04-08 00:41:59'),
-(8, 'Desarrollador Backend', 'Desarrollo de aplicaciones backend utilizando PHP y MySQL', 2500.00, '2025-06-30', 1, 1, 1, 1, '2025-04-04 23:04:38', '2025-04-04 23:04:38'),
-(10, 'Administrador de redes', 'drthdrth', 20000.00, NULL, 1, 1, 1, 1, '2025-04-05 04:23:47', '2025-04-05 04:23:47'),
-(13, 'Ingeniero electrico js', 'ulrfhriewghk', 75100.00, NULL, 1, 1, 1, 1, '2025-04-08 00:42:24', '2025-04-08 00:42:24');
-
 -- --------------------------------------------------------
 
 --
@@ -205,18 +181,9 @@ CREATE TABLE `postulantes` (
   `id_postulante` bigint(20) UNSIGNED NOT NULL,
   `nombre` varchar(255) NOT NULL,
   `apellido` varchar(255) NOT NULL,
-  `fecha_nacimiento` date NOT NULL,
+  `fecha_nacimiento` date DEFAULT NULL,
   `id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `postulantes`
---
-
-INSERT INTO `postulantes` (`id_postulante`, `nombre`, `apellido`, `fecha_nacimiento`, `id`) VALUES
-(1, 'Juan', 'Pérez', '1995-04-23', 1),
-(2, 'María', 'López', '1993-08-15', 2),
-(3, 'Carlos', 'Gómez', '1998-02-10', 3);
 
 -- --------------------------------------------------------
 
@@ -252,20 +219,6 @@ CREATE TABLE `solicitudes` (
   `id_oferta` bigint(20) UNSIGNED NOT NULL,
   `fecha_solicitud` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `solicitudes`
---
-
-INSERT INTO `solicitudes` (`id_solicitud`, `id_hojadevida`, `id_postulante`, `id_estadosolicitud`, `id_oferta`, `fecha_solicitud`) VALUES
-(1, 2, 1, 2, 7, '2025-03-30 23:48:11'),
-(2, 2, 1, 2, 1, '2025-03-31 07:45:04'),
-(3, 2, 1, 2, 2, '2025-03-31 07:54:56'),
-(4, 2, 1, 2, 4, '2025-04-02 07:53:45'),
-(6, 2, 1, 2, 6, '2025-04-04 09:36:05'),
-(7, 2, 1, 2, 3, '2025-04-05 05:30:46'),
-(8, 2, 3, 2, 2, '2025-04-06 19:09:09'),
-(9, 2, 3, 2, 10, '2025-04-06 19:10:09');
 
 -- --------------------------------------------------------
 
@@ -361,9 +314,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `id_rol`, `username`, `firstname`, `lastname`, `email`, `email_verified_at`, `password`, `carrera`, `facultad`, `address`, `city`, `country`, `postal`, `about`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 1, 'admin', 'Administrador', 'Admin', 'admin@argon.com', NULL, '$2y$10$oFE/.5TX6NqoXSRj6L0yRuA27vV.w9TyXlgzAqumo/SullD93VgXG', 'ingenieria en sistemas', 'ingenieria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-04-05 19:05:17'),
-(2, 3, 'jefe_rrhh', 'Jefe', 'RRHH', 'jefe.rrhh@empresa.com', NULL, 'hashed_password_2', '', '', NULL, NULL, NULL, NULL, NULL, NULL, '2025-03-30 03:41:00', '2025-03-30 03:41:00'),
-(3, 2, 'mike', 'mateo', 'sold', 'camilosol@gmail.com', NULL, '$2y$10$KrUNo/RpGSQ7dppmrMFmL.ZwGkWTMj6S6Ar.832K3KQNzsXNVciXm', 'Ingenieria electrica', 'Ingenieria', NULL, 'Cali', NULL, '1', 'NE', NULL, '2025-03-30 03:41:00', '2025-04-09 20:25:14');
+(1, 1, 'admin', 'Administrador', 'Admin', 'admin@argon.com', NULL, '$2y$10$oFE/.5TX6NqoXSRj6L0yRuA27vV.w9TyXlgzAqumo/SullD93VgXG', 'ingenieria en sistemas', 'ingenieria', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2025-04-05 19:05:17');
 
 --
 -- Índices para tablas volcadas
@@ -483,7 +434,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `empresas`
 --
 ALTER TABLE `empresas`
-  MODIFY `id_empresa` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_empresa` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `estados_solicitudes`
@@ -513,7 +464,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `ofertas`
 --
 ALTER TABLE `ofertas`
-  MODIFY `id_oferta` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_oferta` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
@@ -525,7 +476,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT de la tabla `postulantes`
 --
 ALTER TABLE `postulantes`
-  MODIFY `id_postulante` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_postulante` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -537,7 +488,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `solicitudes`
 --
 ALTER TABLE `solicitudes`
-  MODIFY `id_solicitud` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_solicitud` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_cargos`
@@ -561,7 +512,7 @@ ALTER TABLE `ubicaciones`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Restricciones para tablas volcadas
@@ -578,9 +529,9 @@ ALTER TABLE `empresas`
 -- Filtros para la tabla `ofertas`
 --
 ALTER TABLE `ofertas`
-  ADD CONSTRAINT `ofertas_id_empresa_foreign` FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id_empresa`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ofertas_id_tipo_contrato_foreign` FOREIGN KEY (`id_tipo_contrato`) REFERENCES `tipo_contratos` (`id_tipo_contrato`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ofertas_id_ubicacion_foreign` FOREIGN KEY (`id_ubicacion`) REFERENCES `ubicaciones` (`id_ubicacion`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `ofertas_id_empresa_foreign` FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id_empresa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `ofertas_id_tipo_contrato_foreign` FOREIGN KEY (`id_tipo_contrato`) REFERENCES `tipo_contratos` (`id_tipo_contrato`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `ofertas_id_ubicacion_foreign` FOREIGN KEY (`id_ubicacion`) REFERENCES `ubicaciones` (`id_ubicacion`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `postulantes`

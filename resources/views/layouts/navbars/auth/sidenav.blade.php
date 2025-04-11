@@ -146,13 +146,20 @@
                 </a>
             </li>
 
-    
+
             @endif
 
 
-       
+
         </ul>
-        <img style="    width: 100%;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy1Yz0bLjapU3_xv2-vpQw13ic4zdmIba_EA&s" alt="">
+        <figure style="
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;">
+            <img style="width: 50%;
+    border-radius: 100%;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy1Yz0bLjapU3_xv2-vpQw13ic4zdmIba_EA&s" alt="">
+        </figure>
     </div>
     <style>
         .nav-link:hover {

@@ -45,6 +45,20 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="empresa" class="negrita">Empresa:</label>
+                    <div>
+                        <select class="form-control" name="empresa" id="empresa" required="required">
+                            @foreach ($empresas as $empresa)
+                            <option value="{{ $empresa->id_empresa }}"
+                                {{ old('empresa', isset($oferta) && $oferta->empresa == $empresa->id_empresa ? 'selected' : '') }}>
+                                {{ $empresa->nombre }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
                     <label for="tipoCargo" class="negrita">Cargo:</label>
                     <div>
                         <select class="form-control" name="tipoCargo" id="tipoCargo" required="required">

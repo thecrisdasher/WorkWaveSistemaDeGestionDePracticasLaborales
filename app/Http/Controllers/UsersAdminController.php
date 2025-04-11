@@ -18,7 +18,6 @@ class UsersAdminController extends Controller
 
     public function create()
     {
-
         return view('admin-users.create-user');
     }
 
@@ -122,14 +121,19 @@ class UsersAdminController extends Controller
             // Buscar el usuario
             $users_admin = User::find($id);
 
-            // Eliminar los registros relacionados en la tabla 'empresas'
-            $users_admin->empresas()->delete(); // Asegúrate de tener una relación definida en el modelo User
+            // Eliminar el registro relacionado en la tabla 'postulantes'
+            if ($users_admin->id_rol == 2) {
+                Postulante::where('id_postulante', $users_admin->id)->delete();
+            }
+
+            User::destroy($id);
+
 
             // Eliminar el usuario
             $users_admin->delete();
 
             // Mostrar un mensaje y redirigir
-            Session::flash('message', 'Eliminado Satisfactoriamente!');
+            Session::flash('message', 'Usuario y registros relacionados eliminados satisfactoriamente!');
             return Redirect::to('admin-users');
         } catch (\Exception $e) {
             // Capturar errores y redirigir con mensaje
