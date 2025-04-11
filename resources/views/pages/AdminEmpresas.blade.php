@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-8 text-center">
                             <div class="numbers">
-                                <h1 class="mt-3  text-white font-weight-bolder">Gestionar empresas</h1>
+                                <h1 class="mt-3  text-white font-weight-bolder" style="text-transform: uppercase; font-size: 40px">Gestionar empresas</h1>
                             </div>
                         </div>
                     </div>

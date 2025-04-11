@@ -36,7 +36,7 @@
                             name="descripcion"
                             type="text"
                             id="descripcion"
-                            maxlength="450" 
+                            maxlength="450"
                             oninput="autoResize(this); checkCharacterLimit(this, 450);">
                         {{ old('descripcion', isset($oferta) ? $oferta->descripcion : '') }}
                         </textarea>

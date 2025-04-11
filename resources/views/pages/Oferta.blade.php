@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-8 text-center">
                             <div class="numbers">
-                                <h1 class="mt-3  text-white font-weight-bolder">Gestionar ofertas</h1>
+                                <h1 class="mt-3  text-white font-weight-bolder" style="text-transform: uppercase; font-size: 50px">Gestionar ofertas</h1>
                             </div>
                         </div>
                     </div>
