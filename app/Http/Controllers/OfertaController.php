@@ -48,25 +48,18 @@ class OfertaController extends Controller
      */
     public function store(Request $request)
     {
-        // Instancio al modelo Productos que hace llamado a la tabla 'productos'
         $oferta = new Ofertas;
-        // Recibo todos los datos del formulario de la vista
         $oferta->nombre_oferta = $request->nombre_oferta;
         $oferta->salario = $request->salario;
         $oferta->descripcion = $request->descripcion;
         $oferta->id_tipo_cargo = $request->tipoCargo;
-        $oferta->id_tipo_contrato = 1; //practicante siempre
-        $oferta->id_empresa = 1;
+        $oferta->id_tipo_contrato = 1; // Practicante siempre
+        $oferta->id_empresa = $request->empresa; // Toma el valor del select
         $oferta->id_ubicacion = 1;
 
-        // Almacenos la imagen en la carpeta publica especifica,
-        // Guardamos la fecha de creación del registro
-        //$oferta->created_at = (new DateTime)->getTimestamp();
-        // Inserto todos los datos en mi tabla 'productos'
         $oferta->save();
-        // Hago una redirección a la vista principal con un mensaje
-        return redirect('oferta')->with('message', 'Oferta Guardado
-        Satisfactoriamente !');
+
+        return redirect('oferta')->with('message', 'Oferta Guardada Satisfactoriamente!');
     }
 
     /**
@@ -104,10 +97,11 @@ class OfertaController extends Controller
      */
     public function edit($id_oferta)
     {
-       
+        $empresas = Empresas::all(); 
         $tiposCargos = TipoCargo::all(); // Obtén todos los cargos desde la tabla tipo_cargos
         $oferta = Ofertas::find($id_oferta);
-        return view('oferta.edit', compact('oferta'), compact('tiposCargos'));
+        return view('oferta.edit', compact('oferta', 'tiposCargos', 'empresas'));
+   
     }
 
     /**
@@ -119,22 +113,18 @@ class OfertaController extends Controller
      */
     public function update(Request $request, $id_oferta)
     {
-
         $oferta = Ofertas::find($id_oferta);
         $oferta->nombre_oferta = $request->nombre_oferta;
         $oferta->salario = $request->salario;
         $oferta->descripcion = $request->descripcion;
         $oferta->id_tipo_cargo = $request->tipoCargo;
-        $oferta->id_tipo_contrato = 1; //practicante siempre
-        $oferta->id_empresa = 1;
+        $oferta->id_tipo_contrato = 1; // Practicante siempre
+        $oferta->id_empresa = $request->empresa; // Toma el valor del select
         $oferta->id_ubicacion = 1;
 
-
-        // Actualizo los datos en la tabla 'productos'
         $oferta->save();
-        // Muestro un mensaje y redirecciono a la vista principal
-        Session::flash('message', 'Editado Satisfactoriamente !');
-        return Redirect::to('oferta');
+
+        return redirect('oferta')->with('message', 'Oferta Actualizada Satisfactoriamente!');
     }
 
     /**

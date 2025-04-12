@@ -50,7 +50,7 @@
                         <select class="form-control" name="empresa" id="empresa" required="required">
                             @foreach ($empresas as $empresa)
                             <option value="{{ $empresa->id_empresa }}"
-                                {{ old('empresa', isset($oferta) && $oferta->empresa == $empresa->id_empresa ? 'selected' : '') }}>
+                                {{ old('empresa', isset($oferta) && $oferta->id_empresa == $empresa->id_empresa ? 'selected' : '') }}>
                                 {{ $empresa->nombre }}
                             </option>
                             @endforeach

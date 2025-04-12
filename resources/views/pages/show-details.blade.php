@@ -8,8 +8,7 @@
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link
     rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 <div class="container-fluid py-2" style="height: 35vh;">
     <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-4 mb-4">
@@ -18,7 +17,7 @@
                     <div class="row">
                         <div class="col-8 text-center">
                             <div class="numbers animate__animated animate__fadeInDown">
-                                <h1 class="mt-3  text-white font-weight-bolder" style="width: 600px;">Conoce la oferta de <strong style="color: aqua; ">{{ $oferta->nombre_oferta }}</strong></h1>
+                                <h1 class="mt-3  text-white font-weight-bolder" style="width: 100%; margin-left: 195px;">Conoce la oferta de <strong style="color: aqua; ">{{ $oferta->nombre_oferta }}</strong></h1>
                             </div>
                         </div>
                     </div>
@@ -34,7 +33,7 @@
         <div class="row mt-1">
             <div class="col-lg-12 mb-lg-0 mb-4">
                 <div class="card ">
-                    <div class="container col-md-auto pb-12 ">
+                    <div class="container col-md-auto pb-12 " style="width: 60vw;">
                         <header>
                             <p style="color: #000;  font-weight: bold; font-size: 30px;" class="mt-4">{{ $oferta->nombre_oferta }}</p>
                             <p>{{ $oferta->Ubicacion->ciudad}} - {{ \Carbon\Carbon::parse($oferta->updated_at)->diffForHumans() }}
@@ -42,22 +41,22 @@
                             <meta name="csrf-token" content="{{ csrf_token() }}">
                             <!-- Botón Postularme -->
                             @if(auth()->check())
-                                <button id="postularmeButton" class="btn btn-primary" data-id-oferta="{{ $oferta->id_oferta }}" onclick="postularme(this)">
-                                    Postularme
-                                </button>
+                            <button id="postularmeButton" class="btn btn-primary" data-id-oferta="{{ $oferta->id_oferta }}" onclick="postularme(this)">
+                                Postularme
+                            </button>
                             @else
-                                <a href="{{ route('login') }}" class="btn btn-secondary">
-                                    Inicia sesión para postularte
-                                </a>
+                            <a href="{{ route('login') }}" class="btn btn-secondary">
+                                Inicia sesión para postularte
+                            </a>
                             @endif
                             <h3 style="color: #000; font-size: 20px; margin-bottom: 0;">Acerca del empleo</h3>
                             <p class="mt-4" style="color: #373737;     margin-top: 0 !important;
                             font-size: 15px;">{{ $oferta->nombre_oferta }}</p>
                             <p>{{ $oferta->descripcion}}</p>
-                            </header>
-                            <p><strong>Salario: </strong>{{ $oferta->salario}}</p>
-                            <hr>
-                            <div style="border: 1px solid rgba(0, 0, 0, 0.19); padding: 20px; border-radius: 15px;">
+                        </header>
+                        <p><strong>Salario: </strong>{{ $oferta->salario}}</p>
+                        <hr>
+                        <div style="border: 1px solid rgba(0, 0, 0, 0.19); padding: 20px; border-radius: 15px;">
                             <h3 style="color: #595959; font-size: 20px;">Acerca de la empresa</h3>
                             <p style="color:rgb(41, 41, 41)">{{$oferta->Empresa->nombre}}
                             <p p class="col-7 text-justify">{{ $oferta->Empresa->razon_social}}</p>
@@ -72,7 +71,7 @@
 
 <!-- Slider de Ofertas -->
 <h2 style="text-align: center; font-size: 24px; color: #000; margin: 40px 0;">Otras ofertas</h2>
-<div class="container-fluid mt-5" data-aos="fade-down"  style="    
+<div class="container-fluid mt-5" data-aos="fade-down" style="    
     width: 100%;
     height: 400px;
     display: flex;
@@ -251,6 +250,6 @@
 </script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-  AOS.init();
+    AOS.init();
 </script>
 @endpush
